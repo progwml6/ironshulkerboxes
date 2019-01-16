@@ -1,0 +1,16 @@
+build/
+.classpath
+.project
+/*.launch
+.gradle/
+eclipse/
+bin/
+repo/
+out/
+/run/
+.settings/
+#IDEA files from Gradle
+.idea/
+/*.iml
+/*.ipr
+/*.iws
