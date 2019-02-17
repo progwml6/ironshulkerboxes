@@ -1,5 +1,6 @@
 package com.progwml6.ironshulkerbox.common.tileentity;
 
+import com.progwml6.ironshulkerbox.client.gui.GUIShulkerBox;
 import com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType;
 import com.progwml6.ironshulkerbox.common.core.IronShulkerBoxBlocks;
 import com.progwml6.ironshulkerbox.common.network.PacketHandler;
@@ -14,7 +15,6 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
 {
@@ -219,7 +219,7 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
 
         for (EntityPlayerMP player : ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers())
         {
-            if (player.dimension == this.world.getDimension().getId())
+            if (player.dimension == this.world.getDimension().getType())
             {
                 double d4 = this.getPos().getX() - player.posX;
                 double d5 = this.getPos().getY() - player.posY;
@@ -227,7 +227,7 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
 
                 if (d4 * d4 + d5 * d5 + d6 * d6 < 16384)
                 {
-                    PacketHandler.sendTo(new PacketTopStackSyncShulkerBox(this.getWorld().getDimension().getId(), this.getPos(), stacks), player);
+                    PacketHandler.sendTo(new PacketTopStackSyncShulkerBox(this.getWorld().getDimension().getType().getId(), this.getPos(), stacks), player);
                 }
             }
         }
@@ -236,5 +236,11 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
     public void receiveMessageFromServer(NonNullList<ItemStack> topStacks)
     {
         this.topStacks = topStacks;
+    }
+
+    @Override
+    public String getGuiID()
+    {
+        return GUIShulkerBox.GUI.OBSIDIAN.getGuiId().toString();
     }
 }

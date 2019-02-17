@@ -1,6 +1,7 @@
 package com.progwml6.ironshulkerbox.common.gui;
 
 import com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType;
+import com.progwml6.ironshulkerbox.common.gui.slot.SlotShulkerBox;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -11,23 +12,44 @@ public class ContainerIronShulkerBox extends Container
 {
     private IronShulkerBoxType ironShulkerBoxType;
 
-    private EntityPlayer player;
+    private IInventory inventory;
 
-    private IInventory chest;
-
-    public ContainerIronShulkerBox(IInventory playerInventory, IInventory chestInventory, IronShulkerBoxType ironShulkerBoxType, EntityPlayer player, int xSize, int ySize)
+    public ContainerIronShulkerBox(IInventory playerInventoryIn, IInventory inventoryIn, IronShulkerBoxType ironShulkerBoxTypeIn, EntityPlayer playerIn, int xSizeIn, int ySizeIn)
     {
-        this.chest = chestInventory;
-        this.player = player;
-        this.ironShulkerBoxType = ironShulkerBoxType;
-        chestInventory.openInventory(this.player);
-        this.layoutContainer(playerInventory, chestInventory, ironShulkerBoxType, xSize, ySize);
+        this.ironShulkerBoxType = ironShulkerBoxTypeIn;
+        this.inventory = inventoryIn;
+
+        inventoryIn.openInventory(playerIn);
+
+        for (int shulkerBoxRow = 0; shulkerBoxRow < ironShulkerBoxTypeIn.getRowCount(); shulkerBoxRow++)
+        {
+            for (int shulkerBoxCol = 0; shulkerBoxCol < ironShulkerBoxTypeIn.rowLength; shulkerBoxCol++)
+            {
+                this.addSlot(new SlotShulkerBox(inventoryIn, shulkerBoxCol + shulkerBoxRow * ironShulkerBoxTypeIn.rowLength, 12 + shulkerBoxCol * 18, 8 + shulkerBoxRow * 18));
+            }
+        }
+
+        int leftCol = (xSizeIn - 162) / 2 + 1;
+
+        for (int playerInvRow = 0; playerInvRow < 3; playerInvRow++)
+        {
+            for (int playerInvCol = 0; playerInvCol < 9; playerInvCol++)
+            {
+                this.addSlot(new Slot(playerInventoryIn, playerInvCol + playerInvRow * 9 + 9, leftCol + playerInvCol * 18, ySizeIn - (4 - playerInvRow) * 18 - 10));
+            }
+
+        }
+
+        for (int hotbarSlot = 0; hotbarSlot < 9; hotbarSlot++)
+        {
+            this.addSlot(new Slot(playerInventoryIn, hotbarSlot, leftCol + hotbarSlot * 18, ySizeIn - 24));
+        }
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return this.chest.isUsableByPlayer(playerIn);
+        return this.inventory.isUsableByPlayer(playerIn);
     }
 
     @Override
@@ -66,47 +88,10 @@ public class ContainerIronShulkerBox extends Container
         return itemStack;
     }
 
-    protected void layoutContainer(IInventory playerInventory, IInventory chestInventory, IronShulkerBoxType ironShulkerBoxType, int xSize, int ySize)
-    {
-        for (int chestRow = 0; chestRow < ironShulkerBoxType.getRowCount(); chestRow++)
-        {
-            for (int chestCol = 0; chestCol < ironShulkerBoxType.rowLength; chestCol++)
-            {
-                this.addSlot(new Slot(chestInventory, chestCol + chestRow * ironShulkerBoxType.rowLength, 12 + chestCol * 18, 8 + chestRow * 18));
-            }
-        }
-
-        int leftCol = (xSize - 162) / 2 + 1;
-
-        for (int playerInvRow = 0; playerInvRow < 3; playerInvRow++)
-        {
-            for (int playerInvCol = 0; playerInvCol < 9; playerInvCol++)
-            {
-                this.addSlot(new Slot(playerInventory, playerInvCol + playerInvRow * 9 + 9, leftCol + playerInvCol * 18, ySize - (4 - playerInvRow) * 18 - 10));
-            }
-
-        }
-
-        for (int hotbarSlot = 0; hotbarSlot < 9; hotbarSlot++)
-        {
-            this.addSlot(new Slot(playerInventory, hotbarSlot, leftCol + hotbarSlot * 18, ySize - 24));
-        }
-    }
-
-    public EntityPlayer getPlayer()
-    {
-        return this.player;
-    }
-
     @Override
     public void onContainerClosed(EntityPlayer playerIn)
     {
         super.onContainerClosed(playerIn);
-        this.chest.closeInventory(playerIn);
-    }
-
-    public IInventory getChestInventory()
-    {
-        return this.chest;
+        this.inventory.closeInventory(playerIn);
     }
 }

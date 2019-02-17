@@ -3,6 +3,7 @@ package com.progwml6.ironshulkerbox.common.blocks;
 import com.progwml6.ironshulkerbox.common.core.IronShulkerBoxBlocks;
 import com.progwml6.ironshulkerbox.common.tileentity.TileEntityIronShulkerBox;
 import com.progwml6.ironshulkerbox.common.util.BlockNames;
+import io.netty.buffer.Unpooled;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.EnumPushReaction;
@@ -12,6 +13,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
@@ -22,6 +24,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.stats.StatList;
@@ -36,16 +39,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ShapeUtils;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -58,7 +64,7 @@ public abstract class BlockShulkerBox extends Block
 
     private final IronShulkerBoxType type;
 
-    public BlockShulkerBox(EnumDyeColor colorIn, Block.Builder properties, IronShulkerBoxType typeIn)
+    public BlockShulkerBox(EnumDyeColor colorIn, Block.Properties properties, IronShulkerBoxType typeIn)
     {
         super(properties);
         this.color = colorIn;
@@ -109,8 +115,7 @@ public abstract class BlockShulkerBox extends Block
     }
 
     @Override
-    public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY,
-            float hitZ)
+    public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
         {
@@ -130,11 +135,7 @@ public abstract class BlockShulkerBox extends Block
 
                 if (((TileEntityIronShulkerBox) tileentity).getAnimationStatus() == TileEntityIronShulkerBox.AnimationStatus.CLOSED)
                 {
-                    AxisAlignedBB axisalignedbb = ShapeUtils
-                            .fullCube().getBoundingBox()
-                            .expand((double) (0.5F * (float) enumFacing.getXOffset()), (double) (0.5F * (float) enumFacing.getYOffset()),
-                                    (double) (0.5F * (float) enumFacing.getZOffset()))
-                            .contract((double) enumFacing.getXOffset(), (double) enumFacing.getYOffset(), (double) enumFacing.getZOffset());
+                    AxisAlignedBB axisalignedbb = VoxelShapes.fullCube().getBoundingBox().expand((double) (0.5F * (float) enumFacing.getXOffset()), (double) (0.5F * (float) enumFacing.getYOffset()), (double) (0.5F * (float) enumFacing.getZOffset())).contract((double) enumFacing.getXOffset(), (double) enumFacing.getYOffset(), (double) enumFacing.getZOffset());
                     flag = worldIn.isCollisionBoxesEmpty(null, axisalignedbb.offset(pos.offset(enumFacing)));
                 }
                 else
@@ -145,7 +146,16 @@ public abstract class BlockShulkerBox extends Block
                 if (flag)
                 {
                     player.addStat(StatList.OPEN_SHULKER_BOX);
-                    player.displayGUIChest((IInventory) tileentity);
+
+                    if (player instanceof EntityPlayerMP && !(player instanceof FakePlayer))
+                    {
+                        EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
+                        PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
+                        buffer.writeBlockPos(tileentity.getPos());
+                        buffer.writeString(((TileEntityIronShulkerBox) tileentity).getShulkerBoxType().getName());
+
+                        NetworkHooks.openGui(entityPlayerMP, (IInteractionObject) tileentity, buffer);
+                    }
                 }
 
                 return true;
@@ -297,9 +307,7 @@ public abstract class BlockShulkerBox extends Block
     public VoxelShape getShape(IBlockState state, IBlockReader worldIn, BlockPos pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity instanceof TileEntityIronShulkerBox ?
-                ShapeUtils.create(((TileEntityIronShulkerBox) tileentity).getBoundingBox(state)) :
-                ShapeUtils.fullCube();
+        return tileentity instanceof TileEntityIronShulkerBox ? VoxelShapes.create(((TileEntityIronShulkerBox) tileentity).getBoundingBox(state)) : VoxelShapes.fullCube();
     }
 
     @Override
@@ -334,6 +342,7 @@ public abstract class BlockShulkerBox extends Block
         ItemStack itemstack = super.getItem(worldIn, pos, state);
         TileEntityIronShulkerBox shulkerBox = (TileEntityIronShulkerBox) worldIn.getTileEntity(pos);
         NBTTagCompound nbttagcompound = shulkerBox.saveToNbt(new NBTTagCompound());
+
         if (!nbttagcompound.isEmpty())
         {
             itemstack.setTagInfo("BlockEntityTag", nbttagcompound);
@@ -381,10 +390,8 @@ public abstract class BlockShulkerBox extends Block
     {
         EnumFacing enumfacing = (EnumFacing) state.get(FACING);
         TileEntityIronShulkerBox.AnimationStatus animationstatus = ((TileEntityIronShulkerBox) worldIn.getTileEntity(pos)).getAnimationStatus();
-        return animationstatus != TileEntityIronShulkerBox.AnimationStatus.CLOSED && (
-                animationstatus != TileEntityIronShulkerBox.AnimationStatus.OPENED || enumfacing != face.getOpposite() && enumfacing != face) ?
-                BlockFaceShape.UNDEFINED :
-                BlockFaceShape.SOLID;
+
+        return animationstatus != TileEntityIronShulkerBox.AnimationStatus.CLOSED && (animationstatus != TileEntityIronShulkerBox.AnimationStatus.OPENED || enumfacing != face.getOpposite() && enumfacing != face) ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
     }
 
     @Override
@@ -497,6 +504,5 @@ public abstract class BlockShulkerBox extends Block
         {
             super.harvestBlock(worldIn, player, pos, state, (TileEntity) null, stack);
         }
-
     }
 }

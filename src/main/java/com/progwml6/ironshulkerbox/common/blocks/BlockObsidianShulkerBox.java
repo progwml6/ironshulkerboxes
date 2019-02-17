@@ -8,7 +8,7 @@ import net.minecraft.world.IBlockReader;
 
 public class BlockObsidianShulkerBox extends BlockShulkerBox
 {
-    public BlockObsidianShulkerBox(EnumDyeColor color, Builder properties)
+    public BlockObsidianShulkerBox(EnumDyeColor color, Properties properties)
     {
         super(color, properties, IronShulkerBoxType.OBSIDIAN);
     }

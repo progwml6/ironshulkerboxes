@@ -22,12 +22,19 @@ import java.util.Comparator;
 public class TileEntityIronShulkerBoxItemRenderer extends TileEntityItemStackRenderer
 {
     private static final TileEntityIronShulkerBox IRON_SHULKER_BOX = new TileEntityIronShulkerBox(EnumDyeColor.BLACK);
+
     private static final TileEntityIronShulkerBox[] IRON_SHULKER_BOXES = Arrays.stream(EnumDyeColor.values()).sorted(Comparator.comparingInt(EnumDyeColor::getId)).map(TileEntityIronShulkerBox::new).toArray(TileEntityIronShulkerBox[]::new);
+
     private static final TileEntityGoldShulkerBox[] GOLD_SHULKER_BOXES = Arrays.stream(EnumDyeColor.values()).sorted(Comparator.comparingInt(EnumDyeColor::getId)).map(TileEntityGoldShulkerBox::new).toArray(TileEntityGoldShulkerBox[]::new);
+
     private static final TileEntityDiamondShulkerBox[] DIAMOND_SHULKER_BOXES = Arrays.stream(EnumDyeColor.values()).sorted(Comparator.comparingInt(EnumDyeColor::getId)).map(TileEntityDiamondShulkerBox::new).toArray(TileEntityDiamondShulkerBox[]::new);
+
     private static final TileEntityCopperShulkerBox[] COPPER_SHULKER_BOXES = Arrays.stream(EnumDyeColor.values()).sorted(Comparator.comparingInt(EnumDyeColor::getId)).map(TileEntityCopperShulkerBox::new).toArray(TileEntityCopperShulkerBox[]::new);
+
     private static final TileEntitySilverShulkerBox[] SILVER_SHULKER_BOXES = Arrays.stream(EnumDyeColor.values()).sorted(Comparator.comparingInt(EnumDyeColor::getId)).map(TileEntitySilverShulkerBox::new).toArray(TileEntitySilverShulkerBox[]::new);
+
     private static final TileEntityCrystalShulkerBox[] CRYSTAL_SHULKER_BOXES = Arrays.stream(EnumDyeColor.values()).sorted(Comparator.comparingInt(EnumDyeColor::getId)).map(TileEntityCrystalShulkerBox::new).toArray(TileEntityCrystalShulkerBox[]::new);
+
     private static final TileEntityObsidianShulkerBox[] OBSIDIAN_SHULKER_BOXES = Arrays.stream(EnumDyeColor.values()).sorted(Comparator.comparingInt(EnumDyeColor::getId)).map(TileEntityObsidianShulkerBox::new).toArray(TileEntityObsidianShulkerBox[]::new);
 
     public static TileEntityIronShulkerBoxItemRenderer instance = new TileEntityIronShulkerBoxItemRenderer();
@@ -46,13 +53,13 @@ public class TileEntityIronShulkerBoxItemRenderer extends TileEntityItemStackRen
             {
                 TileEntityRendererDispatcher.instance.renderAsItem(IRON_SHULKER_BOX);
             }
-            else if(colorOut == null)
+            else if (colorOut == null)
             {
                 TileEntityRendererDispatcher.instance.renderAsItem(IRON_SHULKER_BOX);
             }
             else
             {
-                switch(typeOut)
+                switch (typeOut)
                 {
                     case IRON:
                         TileEntityRendererDispatcher.instance.renderAsItem(IRON_SHULKER_BOXES[colorOut.ordinal()]);

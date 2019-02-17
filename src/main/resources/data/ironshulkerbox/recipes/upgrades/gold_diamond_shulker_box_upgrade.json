@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "ironshulkerbox:upgrades",
+    "pattern": [
+        "GGG",
+        "MSM",
+        "GGG"
+    ],
+    "key": {
+        "M": {
+            "constant": "ironshulkerbox:diamond"
+        },
+        "S": {
+            "constant": "ironshulkerbox:gold"
+        },
+        "G": {
+            "constant": "ironshulkerbox:glass"
+        }
+    },
+    "result": {
+        "item": "ironshulkerbox:gold_diamond_shulker_box_upgrade"
+    }
+}

@@ -1,5 +1,6 @@
 package com.progwml6.ironshulkerbox.common.tileentity;
 
+import com.progwml6.ironshulkerbox.client.gui.GUIShulkerBox;
 import com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType;
 import com.progwml6.ironshulkerbox.common.core.IronShulkerBoxBlocks;
 import net.minecraft.item.EnumDyeColor;
@@ -16,5 +17,11 @@ public class TileEntityGoldShulkerBox extends TileEntityIronShulkerBox
     public TileEntityGoldShulkerBox(@Nullable EnumDyeColor colorIn)
     {
         super(IronShulkerBoxEntityType.GOLD_SHULKER_BOX, colorIn, IronShulkerBoxType.GOLD, IronShulkerBoxBlocks.goldShulkerBoxes);
+    }
+
+    @Override
+    public String getGuiID()
+    {
+        return GUIShulkerBox.GUI.GOLD.getGuiId().toString();
     }
 }

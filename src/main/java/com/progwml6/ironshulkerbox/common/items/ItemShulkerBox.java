@@ -5,7 +5,7 @@ import net.minecraft.item.ItemBlock;
 
 public class ItemShulkerBox extends ItemBlock
 {
-    public ItemShulkerBox(Block block, Builder builder)
+    public ItemShulkerBox(Block block, Properties builder)
     {
         super(block, builder);
 

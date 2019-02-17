@@ -13,18 +13,13 @@ public final class PacketHandler
 {
     private static final String PROTOCOL_VERSION = Integer.toString(1);
 
-    private static final SimpleChannel HANDLER = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(IronShulkerBox.MOD_ID, "main_channel"))
-            .clientAcceptedVersions(PROTOCOL_VERSION::equals)
-            .serverAcceptedVersions(PROTOCOL_VERSION::equals)
-            .networkProtocolVersion(() -> PROTOCOL_VERSION)
-            .simpleChannel();
+    private static final SimpleChannel HANDLER = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(IronShulkerBox.MOD_ID, "main_channel")).clientAcceptedVersions(PROTOCOL_VERSION::equals).serverAcceptedVersions(PROTOCOL_VERSION::equals).networkProtocolVersion(() -> PROTOCOL_VERSION).simpleChannel();
 
     public static void register()
     {
         int disc = 0;
 
-        HANDLER.registerMessage(disc++, PacketTopStackSyncShulkerBox.class, PacketTopStackSyncShulkerBox::encode, PacketTopStackSyncShulkerBox::decode,
-                PacketTopStackSyncShulkerBox.Handler::handle);
+        HANDLER.registerMessage(disc++, PacketTopStackSyncShulkerBox.class, PacketTopStackSyncShulkerBox::encode, PacketTopStackSyncShulkerBox::decode, PacketTopStackSyncShulkerBox.Handler::handle);
     }
 
     public static void sendTo(Object msg, EntityPlayerMP player)

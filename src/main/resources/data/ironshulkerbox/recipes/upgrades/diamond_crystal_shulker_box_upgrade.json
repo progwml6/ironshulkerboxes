@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "ironshulkerbox:upgrades",
+    "pattern": [
+        "GGG",
+        "GSG",
+        "GGG"
+    ],
+    "key": {
+        "G": {
+            "constant": "ironshulkerbox:glass"
+        },
+        "S": {
+            "constant": "ironshulkerbox:obsidian"
+        }
+    },
+    "result": {
+        "item": "ironshulkerbox:diamond_crystal_shulker_box_upgrade"
+    }
+}

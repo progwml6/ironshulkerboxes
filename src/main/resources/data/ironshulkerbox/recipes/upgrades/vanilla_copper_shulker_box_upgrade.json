@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "ironshulkerbox:upgrades",
+    "pattern": [
+        "MMM",
+        "MSM",
+        "MMM"
+    ],
+    "key": {
+        "M": {
+            "constant": "ironshulkerbox:copper"
+        },
+        "S": {
+            "constant": "ironshulkerbox:shulker_shell"
+        }
+    },
+    "result": {
+        "item": "ironshulkerbox:vanilla_copper_shulker_box_upgrade"
+    }
+}

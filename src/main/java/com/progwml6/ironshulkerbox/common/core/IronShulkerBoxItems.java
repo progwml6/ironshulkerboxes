@@ -15,7 +15,7 @@ import com.progwml6.ironshulkerbox.common.items.ItemShulkerBoxChanger;
 import com.progwml6.ironshulkerbox.common.items.ShulkerBoxChangerType;
 import com.progwml6.ironshulkerbox.common.util.ItemNames;
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.Builder;
+import net.minecraft.item.Item.Properties;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +24,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class IronShulkerBoxItems
 {
-    public static Builder itemBuilder;
+    public static Properties itemBuilder;
 
     @ObjectHolder(ItemNames.IRON_GOLD_UPGRADE)
     public static Item ironToGoldUpgrade;
@@ -66,7 +66,7 @@ public class IronShulkerBoxItems
         {
             IForgeRegistry<Item> itemRegistry = event.getRegistry();
 
-            itemBuilder = (new Builder()).group(IronShulkerBoxCreativeTabs.IRON_SHULKER_BOX).maxStackSize(1);
+            itemBuilder = (new Properties()).group(IronShulkerBoxCreativeTabs.IRON_SHULKER_BOX).maxStackSize(1);
 
             itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.IRON_GOLD));
             itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.GOLD_DIAMOND));

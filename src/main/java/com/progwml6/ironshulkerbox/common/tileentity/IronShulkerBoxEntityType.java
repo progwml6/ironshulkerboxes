@@ -51,20 +51,13 @@ public class IronShulkerBoxEntityType
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> e)
         {
-            registerTileEntityType(e.getRegistry(), register("iron_shulker_box", TileEntityType.Builder.create(TileEntityIronShulkerBox::new)),
-                    TileEntityNames.IRON_SHULKER_BOX);
-            registerTileEntityType(e.getRegistry(), register("gold_shulker_box", TileEntityType.Builder.create(TileEntityGoldShulkerBox::new)),
-                    TileEntityNames.GOLD_SHULKER_BOX);
-            registerTileEntityType(e.getRegistry(), register("diamond_shulker_box", TileEntityType.Builder.create(TileEntityDiamondShulkerBox::new)),
-                    TileEntityNames.DIAMOND_SHULKER_BOX);
-            registerTileEntityType(e.getRegistry(), register("crystal_shulker_box", TileEntityType.Builder.create(TileEntityCrystalShulkerBox::new)),
-                    TileEntityNames.CRYSTAL_SHULKER_BOX);
-            registerTileEntityType(e.getRegistry(), register("copper_shulker_box", TileEntityType.Builder.create(TileEntityCopperShulkerBox::new)),
-                    TileEntityNames.COPPER_SHULKER_BOX);
-            registerTileEntityType(e.getRegistry(), register("silver_shulker_box", TileEntityType.Builder.create(TileEntitySilverShulkerBox::new)),
-                    TileEntityNames.SILVER_SHULKER_BOX);
-            registerTileEntityType(e.getRegistry(), register("obsidian_shulker_box", TileEntityType.Builder.create(TileEntityObsidianShulkerBox::new)),
-                    TileEntityNames.OBSIDIAN_SHULKER_BOX);
+            registerTileEntityType(e.getRegistry(), register("iron_shulker_box", TileEntityType.Builder.create(TileEntityIronShulkerBox::new)), TileEntityNames.IRON_SHULKER_BOX);
+            registerTileEntityType(e.getRegistry(), register("gold_shulker_box", TileEntityType.Builder.create(TileEntityGoldShulkerBox::new)), TileEntityNames.GOLD_SHULKER_BOX);
+            registerTileEntityType(e.getRegistry(), register("diamond_shulker_box", TileEntityType.Builder.create(TileEntityDiamondShulkerBox::new)), TileEntityNames.DIAMOND_SHULKER_BOX);
+            registerTileEntityType(e.getRegistry(), register("crystal_shulker_box", TileEntityType.Builder.create(TileEntityCrystalShulkerBox::new)), TileEntityNames.CRYSTAL_SHULKER_BOX);
+            registerTileEntityType(e.getRegistry(), register("copper_shulker_box", TileEntityType.Builder.create(TileEntityCopperShulkerBox::new)), TileEntityNames.COPPER_SHULKER_BOX);
+            registerTileEntityType(e.getRegistry(), register("silver_shulker_box", TileEntityType.Builder.create(TileEntitySilverShulkerBox::new)), TileEntityNames.SILVER_SHULKER_BOX);
+            registerTileEntityType(e.getRegistry(), register("obsidian_shulker_box", TileEntityType.Builder.create(TileEntityObsidianShulkerBox::new)), TileEntityNames.OBSIDIAN_SHULKER_BOX);
         }
     }
 

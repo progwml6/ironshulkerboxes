@@ -8,7 +8,7 @@ import net.minecraft.world.IBlockReader;
 
 public class BlockDiamondShulkerBox extends BlockShulkerBox
 {
-    public BlockDiamondShulkerBox(EnumDyeColor color, Builder properties)
+    public BlockDiamondShulkerBox(EnumDyeColor color, Properties properties)
     {
         super(color, properties, IronShulkerBoxType.DIAMOND);
     }

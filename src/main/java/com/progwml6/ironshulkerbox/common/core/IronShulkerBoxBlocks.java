@@ -28,7 +28,7 @@ import java.util.List;
 
 public class IronShulkerBoxBlocks
 {
-    public static Item.Builder itemBuilder;
+    public static Item.Properties itemBuilder;
 
     //@formatter:off
     // IRON START
@@ -526,13 +526,13 @@ public class IronShulkerBoxBlocks
 
             for (EnumDyeColor color : EnumDyeColor.values())
             {
-                blockRegistry.register(new BlockIronShulkerBox(color, Block.Builder.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockGoldShulkerBox(color, Block.Builder.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockDiamondShulkerBox(color, Block.Builder.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockCopperShulkerBox(color, Block.Builder.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockSilverShulkerBox(color, Block.Builder.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockCrystalShulkerBox(color, Block.Builder.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockObsidianShulkerBox(color, Block.Builder.create(Material.IRON).hardnessAndResistance(3.0F, 10000.0F)));
+                blockRegistry.register(new BlockIronShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new BlockGoldShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new BlockDiamondShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new BlockCopperShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new BlockSilverShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new BlockCrystalShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new BlockObsidianShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 10000.0F)));
 
             }
         }
@@ -554,7 +554,7 @@ public class IronShulkerBoxBlocks
             allShulkerBoxes = Arrays.asList(whiteIronShulkerBoxBlock, orangeIronShulkerBoxBlock, magentaIronShulkerBoxBlock, lightBlueIronShulkerBoxBlock, yellowIronShulkerBoxBlock, limeIronShulkerBoxBlock, pinkIronShulkerBoxBlock, grayIronShulkerBoxBlock, lightGrayIronShulkerBoxBlock, cyanIronShulkerBoxBlock, purpleIronShulkerBoxBlock, blueIronShulkerBoxBlock, brownIronShulkerBoxBlock, greenIronShulkerBoxBlock, redIronShulkerBoxBlock, blackIronShulkerBoxBlock, whiteGoldShulkerBoxBlock, orangeGoldShulkerBoxBlock, magentaGoldShulkerBoxBlock, lightBlueGoldShulkerBoxBlock, yellowGoldShulkerBoxBlock, limeGoldShulkerBoxBlock, pinkGoldShulkerBoxBlock, grayGoldShulkerBoxBlock, lightGrayGoldShulkerBoxBlock, cyanGoldShulkerBoxBlock, purpleGoldShulkerBoxBlock, blueGoldShulkerBoxBlock, brownGoldShulkerBoxBlock, greenGoldShulkerBoxBlock, redGoldShulkerBoxBlock, blackGoldShulkerBoxBlock, whiteDiamondShulkerBoxBlock, orangeDiamondShulkerBoxBlock, magentaDiamondShulkerBoxBlock, lightBlueDiamondShulkerBoxBlock, yellowDiamondShulkerBoxBlock, limeDiamondShulkerBoxBlock, pinkDiamondShulkerBoxBlock, grayDiamondShulkerBoxBlock, lightGrayDiamondShulkerBoxBlock, cyanDiamondShulkerBoxBlock, purpleDiamondShulkerBoxBlock, blueDiamondShulkerBoxBlock, brownDiamondShulkerBoxBlock, greenDiamondShulkerBoxBlock, redDiamondShulkerBoxBlock, blackDiamondShulkerBoxBlock, whiteCopperShulkerBoxBlock, orangeCopperShulkerBoxBlock, magentaCopperShulkerBoxBlock, lightBlueCopperShulkerBoxBlock, yellowCopperShulkerBoxBlock, limeCopperShulkerBoxBlock, pinkCopperShulkerBoxBlock, grayCopperShulkerBoxBlock, lightGrayCopperShulkerBoxBlock, cyanCopperShulkerBoxBlock, purpleCopperShulkerBoxBlock, blueCopperShulkerBoxBlock, brownCopperShulkerBoxBlock, greenCopperShulkerBoxBlock, redCopperShulkerBoxBlock, blackCopperShulkerBoxBlock, whiteSilverShulkerBoxBlock, orangeSilverShulkerBoxBlock, magentaSilverShulkerBoxBlock, lightBlueSilverShulkerBoxBlock, yellowSilverShulkerBoxBlock, limeSilverShulkerBoxBlock, pinkSilverShulkerBoxBlock, graySilverShulkerBoxBlock, lightGraySilverShulkerBoxBlock, cyanSilverShulkerBoxBlock, purpleSilverShulkerBoxBlock, blueSilverShulkerBoxBlock, brownSilverShulkerBoxBlock, greenSilverShulkerBoxBlock, redSilverShulkerBoxBlock, blackSilverShulkerBoxBlock, whiteCrystalShulkerBoxBlock, orangeCrystalShulkerBoxBlock, magentaCrystalShulkerBoxBlock, lightBlueCrystalShulkerBoxBlock, yellowCrystalShulkerBoxBlock, limeCrystalShulkerBoxBlock, pinkCrystalShulkerBoxBlock, grayCrystalShulkerBoxBlock, lightGrayCrystalShulkerBoxBlock, cyanCrystalShulkerBoxBlock, purpleCrystalShulkerBoxBlock, blueCrystalShulkerBoxBlock, brownCrystalShulkerBoxBlock, greenCrystalShulkerBoxBlock, redCrystalShulkerBoxBlock, blackCrystalShulkerBoxBlock, whiteObsidianShulkerBoxBlock, orangeObsidianShulkerBoxBlock, magentaObsidianShulkerBoxBlock, lightBlueObsidianShulkerBoxBlock, yellowObsidianShulkerBoxBlock, limeObsidianShulkerBoxBlock, pinkObsidianShulkerBoxBlock, grayObsidianShulkerBoxBlock, lightGrayObsidianShulkerBoxBlock, cyanObsidianShulkerBoxBlock, purpleObsidianShulkerBoxBlock, blueObsidianShulkerBoxBlock, brownObsidianShulkerBoxBlock, greenObsidianShulkerBoxBlock, redObsidianShulkerBoxBlock, blackObsidianShulkerBoxBlock);
             //@formatter:on
 
-            itemBuilder = (new Item.Builder()).group(IronShulkerBoxCreativeTabs.IRON_SHULKER_BOX).setTEISR(() -> TileEntityIronShulkerBoxItemRenderer::new);
+            itemBuilder = (new Item.Properties()).group(IronShulkerBoxCreativeTabs.IRON_SHULKER_BOX).setTEISR(() -> TileEntityIronShulkerBoxItemRenderer::new);
 
             for (BlockShulkerBox shulkerBox : allShulkerBoxes)
             {

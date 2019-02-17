@@ -1,5 +1,6 @@
 package com.progwml6.ironshulkerbox.common.tileentity;
 
+import com.progwml6.ironshulkerbox.client.gui.GUIShulkerBox;
 import com.progwml6.ironshulkerbox.common.blocks.BlockShulkerBox;
 import com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType;
 import com.progwml6.ironshulkerbox.common.core.IronShulkerBoxBlocks;
@@ -26,7 +27,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.shapes.ShapeUtils;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -73,8 +74,7 @@ public class TileEntityIronShulkerBox extends TileEntityLockableLoot implements 
         this(IronShulkerBoxEntityType.IRON_SHULKER_BOX, colorIn, IronShulkerBoxType.IRON, IronShulkerBoxBlocks.ironShulkerBoxes);
     }
 
-    public TileEntityIronShulkerBox(TileEntityType<?> typeIn, @Nonnull EnumDyeColor colorIn, IronShulkerBoxType shulkerBoxTypeIn,
-            List<BlockShulkerBox> blocksIn)
+    public TileEntityIronShulkerBox(TileEntityType<?> typeIn, @Nonnull EnumDyeColor colorIn, IronShulkerBoxType shulkerBoxTypeIn, List<BlockShulkerBox> blocksIn)
     {
         super(typeIn);
 
@@ -144,8 +144,7 @@ public class TileEntityIronShulkerBox extends TileEntityLockableLoot implements 
 
     public AxisAlignedBB getBoundingBox(EnumFacing facing)
     {
-        return ShapeUtils.fullCube().getBoundingBox().expand((double) (0.5F * this.getProgress(1.0F) * (float) facing.getXOffset()),
-                (double) (0.5F * this.getProgress(1.0F) * (float) facing.getYOffset()), (double) (0.5F * this.getProgress(1.0F) * (float) facing.getZOffset()));
+        return VoxelShapes.fullCube().getBoundingBox().expand((double) (0.5F * this.getProgress(1.0F) * (float) facing.getXOffset()), (double) (0.5F * this.getProgress(1.0F) * (float) facing.getYOffset()), (double) (0.5F * this.getProgress(1.0F) * (float) facing.getZOffset()));
     }
 
     private AxisAlignedBB getTopBoundingBox(EnumFacing facing)
@@ -213,8 +212,7 @@ public class TileEntityIronShulkerBox extends TileEntityLockableLoot implements 
                                 d2 = d2 + 0.01D;
                         }
 
-                        entity.move(MoverType.SHULKER_BOX, d0 * (double) enumfacing.getXOffset(), d1 * (double) enumfacing.getYOffset(),
-                                d2 * (double) enumfacing.getZOffset());
+                        entity.move(MoverType.SHULKER_BOX, d0 * (double) enumfacing.getXOffset(), d1 * (double) enumfacing.getYOffset(), d2 * (double) enumfacing.getZOffset());
                     }
                 }
 
@@ -280,12 +278,10 @@ public class TileEntityIronShulkerBox extends TileEntityLockableLoot implements 
             }
 
             ++this.openCount;
-            System.out.println(this.getBlockState().getBlock());
             this.world.addBlockEvent(this.pos, this.getBlockState().getBlock(), 1, this.openCount);
             if (this.openCount == 1)
             {
-                this.world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_SHULKER_BOX_OPEN, SoundCategory.BLOCKS, 0.5F,
-                        this.world.rand.nextFloat() * 0.1F + 0.9F);
+                this.world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_SHULKER_BOX_OPEN, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
             }
         }
     }
@@ -299,8 +295,7 @@ public class TileEntityIronShulkerBox extends TileEntityLockableLoot implements 
             this.world.addBlockEvent(this.pos, this.getBlockState().getBlock(), 1, this.openCount);
             if (this.openCount <= 0)
             {
-                this.world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_SHULKER_BOX_CLOSE, SoundCategory.BLOCKS, 0.5F,
-                        this.world.rand.nextFloat() * 0.1F + 0.9F);
+                this.world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_SHULKER_BOX_CLOSE, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
             }
         }
     }
@@ -408,8 +403,7 @@ public class TileEntityIronShulkerBox extends TileEntityLockableLoot implements 
     @Override
     public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable EnumFacing direction)
     {
-        return !(Block.getBlockFromItem(itemStackIn.getItem()) instanceof BlockShulkerBox) && !(Block
-                .getBlockFromItem(itemStackIn.getItem()) instanceof net.minecraft.block.BlockShulkerBox);
+        return !(Block.getBlockFromItem(itemStackIn.getItem()) instanceof BlockShulkerBox) || !(Block.getBlockFromItem(itemStackIn.getItem()) instanceof net.minecraft.block.BlockShulkerBox);
     }
 
     /**
@@ -446,6 +440,7 @@ public class TileEntityIronShulkerBox extends TileEntityLockableLoot implements 
             this.color = BlockShulkerBox.getColorFromBlock(this.getBlockState().getBlock());
             this.needsColorFromWorld = false;
         }
+
         return this.color;
     }
 
@@ -492,7 +487,7 @@ public class TileEntityIronShulkerBox extends TileEntityLockableLoot implements 
     @Override
     public String getGuiID()
     {
-        return "IronShulkerBox:" + this.getShulkerBoxType().name() + "_shulker_box";
+        return GUIShulkerBox.GUI.IRON.getGuiId().toString();
     }
 
     public IronShulkerBoxType getShulkerBoxType()

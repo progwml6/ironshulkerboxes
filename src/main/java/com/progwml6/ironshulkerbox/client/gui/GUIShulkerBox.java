@@ -37,13 +37,13 @@ public class GUIShulkerBox extends GuiContainer
     public enum GUI
     {
         //@formatter:off
-        IRON(184, 202, ResourceList.IRON, IronShulkerBoxType.IRON),
-        GOLD(184, 256, ResourceList.GOLD, IronShulkerBoxType.GOLD),
-        DIAMOND(238, 256, ResourceList.DIAMOND, IronShulkerBoxType.DIAMOND),
-        COPPER(184, 184, ResourceList.COPPER, IronShulkerBoxType.COPPER),
-        SILVER(184, 238, ResourceList.SILVER, IronShulkerBoxType.SILVER),
-        CRYSTAL(238, 256, ResourceList.DIAMOND, IronShulkerBoxType.CRYSTAL),
-        OBSIDIAN(238, 256, ResourceList.DIAMOND,IronShulkerBoxType.OBSIDIAN);
+        IRON(184, 202, ResourceList.IRON, IronShulkerBoxType.IRON, new ResourceLocation("ironshulkerbox:iron")),
+        GOLD(184, 256, ResourceList.GOLD, IronShulkerBoxType.GOLD, new ResourceLocation("ironshulkerbox:gold")),
+        DIAMOND(238, 256, ResourceList.DIAMOND, IronShulkerBoxType.DIAMOND, new ResourceLocation("ironshulkerbox:diamond")),
+        COPPER(184, 184, ResourceList.COPPER, IronShulkerBoxType.COPPER, new ResourceLocation("ironshulkerbox:copper")),
+        SILVER(184, 238, ResourceList.SILVER, IronShulkerBoxType.SILVER, new ResourceLocation("ironshulkerbox:silver")),
+        CRYSTAL(238, 256, ResourceList.DIAMOND, IronShulkerBoxType.CRYSTAL, new ResourceLocation("ironshulkerbox:crystal")),
+        OBSIDIAN(238, 256, ResourceList.DIAMOND,IronShulkerBoxType.OBSIDIAN, new ResourceLocation("ironshulkerbox:obsidian"));
         //@formatter:on
 
         private int xSize;
@@ -54,12 +54,15 @@ public class GUIShulkerBox extends GuiContainer
 
         private IronShulkerBoxType ironShulkerBoxType;
 
-        GUI(int xSize, int ySize, ResourceList resourceList, IronShulkerBoxType ironShulkerBoxType)
+        private ResourceLocation guiId;
+
+        GUI(int xSize, int ySize, ResourceList resourceList, IronShulkerBoxType ironShulkerBoxType, ResourceLocation guiId)
         {
             this.xSize = xSize;
             this.ySize = ySize;
             this.resourceList = resourceList;
             this.ironShulkerBoxType = ironShulkerBoxType;
+            this.guiId = guiId;
         }
 
         protected Container makeContainer(IInventory playerInventory, IInventory chestInventory, EntityPlayer entityPlayer)
@@ -67,21 +70,22 @@ public class GUIShulkerBox extends GuiContainer
             return new ContainerIronShulkerBox(playerInventory, chestInventory, this.ironShulkerBoxType, entityPlayer, this.xSize, this.ySize);
         }
 
-        public static GUIShulkerBox buildGUI(IronShulkerBoxType type, IInventory playerInventory, TileEntityIronShulkerBox shulkerInventory)
+        public ResourceLocation getGuiId()
         {
-            return new GUIShulkerBox(values()[shulkerInventory.getShulkerBoxType().ordinal()], playerInventory, shulkerInventory);
+            return this.guiId;
         }
     }
 
     private GUI type;
 
-    private GUIShulkerBox(GUI type, IInventory player, IInventory shulker)
+    public GUIShulkerBox(GUI type, IInventory player, IInventory shulker)
     {
         super(type.makeContainer(player, shulker, Minecraft.getInstance().player));
 
         this.type = type;
         this.xSize = type.xSize;
         this.ySize = type.ySize;
+
         this.allowUserInput = false;
     }
 

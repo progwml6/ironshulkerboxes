@@ -31,7 +31,7 @@ public class ItemShulkerBoxChanger extends Item
 {
     public final ShulkerBoxChangerType type;
 
-    public ItemShulkerBoxChanger(Builder properties, ShulkerBoxChangerType shulkerBoxChangerType)
+    public ItemShulkerBoxChanger(Properties properties, ShulkerBoxChangerType shulkerBoxChangerType)
     {
         super(properties);
         this.type = shulkerBoxChangerType;
@@ -46,10 +46,7 @@ public class ItemShulkerBoxChanger extends Item
         {
             if (I18n.hasKey("ironshulkerbox." + this.type.source.name) && I18n.hasKey("ironshulkerbox." + this.type.target.name))
             {
-                tooltip.add((new TextComponentTranslation("ironshulkerbox.upgrade.tooltip",
-                        new TextComponentTranslation("ironshulkerbox." + this.type.source.name).applyTextStyle(TextFormatting.BOLD),
-                        new TextComponentTranslation("ironshulkerbox." + this.type.target.name).applyTextStyle(TextFormatting.BOLD)))
-                        .applyTextStyle(TextFormatting.DARK_RED));
+                tooltip.add((new TextComponentTranslation("ironshulkerbox.upgrade.tooltip", new TextComponentTranslation("ironshulkerbox." + this.type.source.name).applyTextStyle(TextFormatting.BOLD), new TextComponentTranslation("ironshulkerbox." + this.type.target.name).applyTextStyle(TextFormatting.BOLD))).applyTextStyle(TextFormatting.DARK_RED));
             }
         }
         if (I18n.hasKey("ironshulkerbox.color.tooltip"))
