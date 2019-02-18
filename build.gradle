@@ -93,6 +93,18 @@ artifacts {
     archives sourcesJar
 }
 
+jar {
+    manifest {
+        attributes(["Specification-Title": "Iron Shulker Boxes",
+                    "Specification-Vendor": "Progwml6",
+                    "Specification-Version": "1", // We are version 1 of ourselves
+                    "Implementation-Title": project.name,
+                    "Implementation-Version": "${version}",
+                    "Implementation-Vendor" :"Progwml6",
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
+    }
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
