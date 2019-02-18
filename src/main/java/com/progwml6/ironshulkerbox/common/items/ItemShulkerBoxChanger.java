@@ -31,11 +31,11 @@ public class ItemShulkerBoxChanger extends Item
 {
     public final ShulkerBoxChangerType type;
 
-    public ItemShulkerBoxChanger(Properties properties, ShulkerBoxChangerType shulkerBoxChangerType)
+    public ItemShulkerBoxChanger(Properties propertiesIn, ShulkerBoxChangerType shulkerBoxChangerTypeIn)
     {
-        super(properties);
-        this.type = shulkerBoxChangerType;
-        this.setRegistryName(shulkerBoxChangerType.itemName);
+        super(propertiesIn);
+        this.type = shulkerBoxChangerTypeIn;
+        this.setRegistryName(shulkerBoxChangerTypeIn.itemName);
     }
 
     @Override

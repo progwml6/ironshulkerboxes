@@ -16,17 +16,15 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 repositories {
-    flatDir {
-        name "fileRepo"
-        dirs "repo"
-    }
     maven {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
     }
 }
 
-group = "com.progwml6.ironshulkerboxes"
+group = "com.progwml6.ironshulkerbox"
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
     mappings channel: 'snapshot', version: mappings_version
@@ -87,8 +85,8 @@ processResources {
 }
 
 task sourcesJar(type: Jar) {
-    classifier = 'sources'
     from sourceSets.main.allJava
+    classifier = 'sources'
 }
 
 artifacts {

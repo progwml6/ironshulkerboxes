@@ -5,10 +5,10 @@ import net.minecraft.item.ItemBlock;
 
 public class ItemShulkerBox extends ItemBlock
 {
-    public ItemShulkerBox(Block block, Properties builder)
+    public ItemShulkerBox(Block blockIn, Properties propertiesIn)
     {
-        super(block, builder);
+        super(blockIn, propertiesIn);
 
-        this.setRegistryName(block.getRegistryName());
+        this.setRegistryName(blockIn.getRegistryName());
     }
 }
