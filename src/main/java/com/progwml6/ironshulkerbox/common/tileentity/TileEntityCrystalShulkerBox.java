@@ -7,11 +7,10 @@ import com.progwml6.ironshulkerbox.common.network.PacketHandler;
 import com.progwml6.ironshulkerbox.common.network.packets.PacketTopStackSyncShulkerBox;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -217,20 +216,7 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
     {
         NonNullList<ItemStack> stacks = this.buildItemStackDataList();
 
-        for (EntityPlayerMP player : ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers())
-        {
-            if (player.dimension == this.world.getDimension().getType())
-            {
-                double d4 = this.getPos().getX() - player.posX;
-                double d5 = this.getPos().getY() - player.posY;
-                double d6 = this.getPos().getZ() - player.posZ;
-
-                if (d4 * d4 + d5 * d5 + d6 * d6 < 16384)
-                {
-                    PacketHandler.sendTo(new PacketTopStackSyncShulkerBox(this.getWorld().getDimension().getType().getId(), this.getPos(), stacks), player);
-                }
-            }
-        }
+        PacketHandler.send(PacketDistributor.TRACKING_CHUNK.with(() -> this.getWorld().getChunk(this.getPos())), new PacketTopStackSyncShulkerBox(this.getWorld().getDimension().getType().getId(), this.getPos(), stacks));
     }
 
     public void receiveMessageFromServer(NonNullList<ItemStack> topStacks)

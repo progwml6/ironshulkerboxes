@@ -27,8 +27,7 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
 
     private final ModelShulker model;
 
-    private static float[][] shifts = { { 0.3F, 0.45F, 0.3F }, { 0.7F, 0.45F, 0.3F }, { 0.3F, 0.45F, 0.7F }, { 0.7F, 0.45F, 0.7F }, { 0.3F, 0.1F, 0.3F },
-            { 0.7F, 0.1F, 0.3F }, { 0.3F, 0.1F, 0.7F }, { 0.7F, 0.1F, 0.7F }, { 0.5F, 0.32F, 0.5F } };
+    private static float[][] shifts = { { 0.3F, 0.45F, 0.3F }, { 0.7F, 0.45F, 0.3F }, { 0.3F, 0.45F, 0.7F }, { 0.7F, 0.45F, 0.7F }, { 0.3F, 0.1F, 0.3F }, { 0.7F, 0.1F, 0.3F }, { 0.3F, 0.1F, 0.7F }, { 0.7F, 0.1F, 0.7F }, { 0.5F, 0.32F, 0.5F } };
 
     private static EntityItem customitem = new EntityItem(null);
 
@@ -54,9 +53,7 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
             }
         }
 
-        IBlockState iBlockState = tileEntity.hasWorld() ?
-                tileEntity.getBlockState() :
-                (IBlockState) tileEntity.getBlockToUse().getDefaultState().with(BlockShulkerBox.FACING, EnumFacing.NORTH);
+        IBlockState iBlockState = tileEntity.hasWorld() ? tileEntity.getBlockState() : (IBlockState) tileEntity.getBlockToUse().getDefaultState().with(BlockShulkerBox.FACING, EnumFacing.NORTH);
         IronShulkerBoxType chestType = IronShulkerBoxType.IRON;
         IronShulkerBoxType typeNew = BlockShulkerBox.getTypeFromBlock(iBlockState.getBlock());
 
@@ -69,6 +66,7 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
         GlStateManager.disableCull();
+
         if (destroyStage >= 0)
         {
             this.bindTexture(DESTROY_STAGES[destroyStage]);
@@ -80,8 +78,7 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
         }
         else
         {
-            ResourceLocation rs = new ResourceLocation("ironshulkerbox",
-                    "textures/model/" + tileEntity.getColor().getName() + "/shulker_" + tileEntity.getColor().getName() + chestType.modelTexture);
+            ResourceLocation rs = new ResourceLocation("ironshulkerbox", "textures/model/" + tileEntity.getColor().getName() + "/shulker_" + tileEntity.getColor().getName() + chestType.modelTexture);
             this.bindTexture(rs);
         }
 
@@ -151,8 +148,7 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
             GlStateManager.enableCull();
         }
 
-        if (chestType.isTransparent()
-                && tileEntity.getDistanceSq(this.rendererDispatcher.entityX, this.rendererDispatcher.entityY, this.rendererDispatcher.entityZ) < 128d)
+        if (chestType.isTransparent() && tileEntity.getDistanceSq(this.rendererDispatcher.entityX, this.rendererDispatcher.entityY, this.rendererDispatcher.entityZ) < 128d)
         {
             this.random.setSeed(254L);
 

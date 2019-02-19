@@ -2,11 +2,9 @@ package com.progwml6.ironshulkerbox.common.network;
 
 import com.progwml6.ironshulkerbox.IronShulkerBox;
 import com.progwml6.ironshulkerbox.common.network.packets.PacketTopStackSyncShulkerBox;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 public final class PacketHandler
@@ -22,11 +20,8 @@ public final class PacketHandler
         HANDLER.registerMessage(disc++, PacketTopStackSyncShulkerBox.class, PacketTopStackSyncShulkerBox::encode, PacketTopStackSyncShulkerBox::decode, PacketTopStackSyncShulkerBox.Handler::handle);
     }
 
-    public static void sendTo(Object msg, EntityPlayerMP player)
+    public static <MSG> void send(PacketDistributor.PacketTarget target, MSG message)
     {
-        if (!(player instanceof FakePlayer))
-        {
-            HANDLER.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
-        }
+        HANDLER.send(target, message);
     }
 }

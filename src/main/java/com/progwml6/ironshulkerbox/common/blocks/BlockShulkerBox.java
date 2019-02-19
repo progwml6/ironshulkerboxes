@@ -3,7 +3,6 @@ package com.progwml6.ironshulkerbox.common.blocks;
 import com.progwml6.ironshulkerbox.common.core.IronShulkerBoxBlocks;
 import com.progwml6.ironshulkerbox.common.tileentity.TileEntityIronShulkerBox;
 import com.progwml6.ironshulkerbox.common.util.BlockNames;
-import io.netty.buffer.Unpooled;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.EnumPushReaction;
@@ -24,7 +23,6 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.stats.StatList;
@@ -128,6 +126,7 @@ public abstract class BlockShulkerBox extends Block
         else
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
+
             if (tileentity instanceof TileEntityIronShulkerBox)
             {
                 EnumFacing enumFacing = state.get(FACING);
@@ -150,11 +149,8 @@ public abstract class BlockShulkerBox extends Block
                     if (player instanceof EntityPlayerMP && !(player instanceof FakePlayer))
                     {
                         EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
-                        PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
-                        buffer.writeBlockPos(tileentity.getPos());
-                        buffer.writeString(((TileEntityIronShulkerBox) tileentity).getShulkerBoxType().getName());
 
-                        NetworkHooks.openGui(entityPlayerMP, (IInteractionObject) tileentity, buffer);
+                        NetworkHooks.openGui(entityPlayerMP, (IInteractionObject) tileentity, buf -> buf.writeBlockPos(tileentity.getPos()));
                     }
                 }
 
