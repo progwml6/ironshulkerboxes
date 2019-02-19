@@ -1,0 +1,20 @@
+{
+    "type": "ironshulkerbox:shulker_box",
+    "group": "ironshulkerbox:light_blue_shulker_box",
+    "pattern": [
+        "MMM",
+        "MSM",
+        "MMM"
+    ],
+    "key": {
+        "M": {
+            "constant": "ironshulkerbox:iron"
+        },
+        "S": {
+            "item": "minecraft:light_blue_shulker_box"
+        }
+    },
+    "result": {
+        "item": "ironshulkerbox:iron_shulker_box_light_blue"
+    }
+}

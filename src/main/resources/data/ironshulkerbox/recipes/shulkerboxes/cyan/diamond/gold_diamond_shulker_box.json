@@ -1,0 +1,23 @@
+{
+    "type": "ironshulkerbox:shulker_box",
+    "group": "ironshulkerbox:cyan_shulker_box",
+    "pattern": [
+        "GGG",
+        "MSM",
+        "GGG"
+    ],
+    "key": {
+        "M": {
+            "constant": "ironshulkerbox:diamond"
+        },
+        "G": {
+            "constant": "ironshulkerbox:glass"
+        },
+        "S": {
+            "item": "ironshulkerbox:gold_shulker_box_cyan"
+        }
+    },
+    "result": {
+        "item": "ironshulkerbox:diamond_shulker_box_cyan"
+    }
+}

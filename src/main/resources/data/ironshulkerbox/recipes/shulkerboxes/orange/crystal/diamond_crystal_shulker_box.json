@@ -1,0 +1,20 @@
+{
+    "type": "ironshulkerbox:shulker_box",
+    "group": "ironshulkerbox:orange_shulker_box",
+    "pattern": [
+        "GGG",
+        "GSG",
+        "GGG"
+    ],
+    "key": {
+        "G": {
+            "constant": "ironshulkerbox:glass"
+        },
+        "S": {
+            "item": "ironshulkerbox:diamond_shulker_box_orange"
+        }
+    },
+    "result": {
+        "item": "ironshulkerbox:crystal_shulker_box_orange"
+    }
+}
