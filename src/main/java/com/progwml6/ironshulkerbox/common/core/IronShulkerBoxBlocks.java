@@ -1,21 +1,21 @@
 package com.progwml6.ironshulkerbox.common.core;
 
 import com.progwml6.ironshulkerbox.IronShulkerBox;
-import com.progwml6.ironshulkerbox.client.renderer.TileEntityIronShulkerBoxItemRenderer;
-import com.progwml6.ironshulkerbox.common.blocks.BlockCopperShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.BlockCrystalShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.BlockDiamondShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.BlockGoldShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.BlockIronShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.BlockObsidianShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.BlockShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.BlockSilverShulkerBox;
-import com.progwml6.ironshulkerbox.common.items.ItemShulkerBox;
+import com.progwml6.ironshulkerbox.client.renderer.IronShulkerBoxItemStackTileEntityRenderer;
+import com.progwml6.ironshulkerbox.common.blocks.CopperShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.blocks.CrystalShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.blocks.DiamondShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.blocks.GoldShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.blocks.ObsidianShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.blocks.SilverShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.items.ShulkerBoxBlockItem;
 import com.progwml6.ironshulkerbox.common.util.BlockColors;
 import com.progwml6.ironshulkerbox.common.util.BlockNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -28,487 +28,487 @@ import java.util.List;
 
 public class IronShulkerBoxBlocks
 {
-    public static Item.Properties itemBuilder;
+    private static Item.Properties itemBuilder;
 
     //@formatter:off
     // IRON START
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static BlockShulkerBox whiteIronShulkerBoxBlock;
+    private static ShulkerBoxBlock whiteIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static Item whiteIronShulkerBoxItemBlock;
+    private static Item whiteIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static BlockShulkerBox orangeIronShulkerBoxBlock;
+    private static ShulkerBoxBlock orangeIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static Item orangeIronShulkerBoxItemBlock;
+    private static Item orangeIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static BlockShulkerBox magentaIronShulkerBoxBlock;
+    private static ShulkerBoxBlock magentaIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static Item magentaIronShulkerBoxItemBlock;
+    private static Item magentaIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static BlockShulkerBox lightBlueIronShulkerBoxBlock;
+    private static ShulkerBoxBlock lightBlueIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static Item lightBlueIronShulkerBoxItemBlock;
+    private static Item lightBlueIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static BlockShulkerBox yellowIronShulkerBoxBlock;
+    private static ShulkerBoxBlock yellowIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static Item yellowIronShulkerBoxItemBlock;
+    private static Item yellowIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static BlockShulkerBox limeIronShulkerBoxBlock;
+    private static ShulkerBoxBlock limeIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static Item limeIronShulkerBoxItemBlock;
+    private static Item limeIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static BlockShulkerBox pinkIronShulkerBoxBlock;
+    private static ShulkerBoxBlock pinkIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static Item pinkIronShulkerBoxItemBlock;
+    private static Item pinkIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static BlockShulkerBox grayIronShulkerBoxBlock;
+    private static ShulkerBoxBlock grayIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static Item grayIronShulkerBoxItemBlock;
+    private static Item grayIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static BlockShulkerBox lightGrayIronShulkerBoxBlock;
+    private static ShulkerBoxBlock lightGrayIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static Item lightGrayIronShulkerBoxItemBlock;
+    private static Item lightGrayIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static BlockShulkerBox cyanIronShulkerBoxBlock;
+    private static ShulkerBoxBlock cyanIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static Item cyanIronShulkerBoxItemBlock;
+    private static Item cyanIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static BlockShulkerBox purpleIronShulkerBoxBlock;
+    private static ShulkerBoxBlock purpleIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static Item purpleIronShulkerBoxItemBlock;
+    private static Item purpleIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static BlockShulkerBox blueIronShulkerBoxBlock;
+    private static ShulkerBoxBlock blueIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static Item blueIronShulkerBoxItemBlock;
+    private static Item blueIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static BlockShulkerBox brownIronShulkerBoxBlock;
+    private static ShulkerBoxBlock brownIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static Item brownIronShulkerBoxItemBlock;
+    private static Item brownIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static BlockShulkerBox greenIronShulkerBoxBlock;
+    private static ShulkerBoxBlock greenIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static Item greenIronShulkerBoxItemBlock;
+    private static Item greenIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static BlockShulkerBox redIronShulkerBoxBlock;
+    public static ShulkerBoxBlock redIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static Item redIronShulkerBoxItemBlock;
+    private static Item redIronShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static BlockShulkerBox blackIronShulkerBoxBlock;
+    static ShulkerBoxBlock blackIronShulkerBoxBlock;
     @ObjectHolder(BlockNames.IRON_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static Item blackIronShulkerBoxItemBlock;
+    private static Item blackIronShulkerBoxItemBlock;
     // IRON END
 
     // GOLD START
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static BlockShulkerBox whiteGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock whiteGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static Item whiteGoldShulkerBoxItemBlock;
+    private static Item whiteGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static BlockShulkerBox orangeGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock orangeGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static Item orangeGoldShulkerBoxItemBlock;
+    private static Item orangeGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static BlockShulkerBox magentaGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock magentaGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static Item magentaGoldShulkerBoxItemBlock;
+    private static Item magentaGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static BlockShulkerBox lightBlueGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock lightBlueGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static Item lightBlueGoldShulkerBoxItemBlock;
+    private static Item lightBlueGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static BlockShulkerBox yellowGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock yellowGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static Item yellowGoldShulkerBoxItemBlock;
+    private static Item yellowGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static BlockShulkerBox limeGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock limeGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static Item limeGoldShulkerBoxItemBlock;
+    private static Item limeGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static BlockShulkerBox pinkGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock pinkGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static Item pinkGoldShulkerBoxItemBlock;
+    private static Item pinkGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static BlockShulkerBox grayGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock grayGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static Item grayGoldShulkerBoxItemBlock;
+    private static Item grayGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static BlockShulkerBox lightGrayGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock lightGrayGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static Item lightGrayGoldShulkerBoxItemBlock;
+    private static Item lightGrayGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static BlockShulkerBox cyanGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock cyanGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static Item cyanGoldShulkerBoxItemBlock;
+    private static Item cyanGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static BlockShulkerBox purpleGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock purpleGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static Item purpleGoldShulkerBoxItemBlock;
+    private static Item purpleGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static BlockShulkerBox blueGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock blueGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static Item blueGoldShulkerBoxItemBlock;
+    private static Item blueGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static BlockShulkerBox brownGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock brownGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static Item brownGoldShulkerBoxItemBlock;
+    private static Item brownGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static BlockShulkerBox greenGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock greenGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static Item greenGoldShulkerBoxItemBlock;
+    private static Item greenGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static BlockShulkerBox redGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock redGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static Item redGoldShulkerBoxItemBlock;
+    private static Item redGoldShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static BlockShulkerBox blackGoldShulkerBoxBlock;
+    private static ShulkerBoxBlock blackGoldShulkerBoxBlock;
     @ObjectHolder(BlockNames.GOLD_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static Item blackGoldShulkerBoxItemBlock;
+    private static Item blackGoldShulkerBoxItemBlock;
     // GOLD END
 
     // DIAMOND START
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static BlockShulkerBox whiteDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock whiteDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static Item whiteDiamondShulkerBoxItemBlock;
+    private static Item whiteDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static BlockShulkerBox orangeDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock orangeDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static Item orangeDiamondShulkerBoxItemBlock;
+    private static Item orangeDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static BlockShulkerBox magentaDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock magentaDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static Item magentaDiamondShulkerBoxItemBlock;
+    private static Item magentaDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static BlockShulkerBox lightBlueDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock lightBlueDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static Item lightBlueDiamondShulkerBoxItemBlock;
+    private static Item lightBlueDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static BlockShulkerBox yellowDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock yellowDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static Item yellowDiamondShulkerBoxItemBlock;
+    private static Item yellowDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static BlockShulkerBox limeDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock limeDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static Item limeDiamondShulkerBoxItemBlock;
+    private static Item limeDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static BlockShulkerBox pinkDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock pinkDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static Item pinkDiamondShulkerBoxItemBlock;
+    private static Item pinkDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static BlockShulkerBox grayDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock grayDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static Item grayDiamondShulkerBoxItemBlock;
+    private static Item grayDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static BlockShulkerBox lightGrayDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock lightGrayDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static Item lightGrayDiamondShulkerBoxItemBlock;
+    private static Item lightGrayDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static BlockShulkerBox cyanDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock cyanDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static Item cyanDiamondShulkerBoxItemBlock;
+    private static Item cyanDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static BlockShulkerBox purpleDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock purpleDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static Item purpleDiamondShulkerBoxItemBlock;
+    private static Item purpleDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static BlockShulkerBox blueDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock blueDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static Item blueDiamondShulkerBoxItemBlock;
+    private static Item blueDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static BlockShulkerBox brownDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock brownDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static Item brownDiamondShulkerBoxItemBlock;
+    private static Item brownDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static BlockShulkerBox greenDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock greenDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static Item greenDiamondShulkerBoxItemBlock;
+    private static Item greenDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static BlockShulkerBox redDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock redDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static Item redDiamondShulkerBoxItemBlock;
+    private static Item redDiamondShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static BlockShulkerBox blackDiamondShulkerBoxBlock;
+    private static ShulkerBoxBlock blackDiamondShulkerBoxBlock;
     @ObjectHolder(BlockNames.DIAMOND_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static Item blackDiamondShulkerBoxItemBlock;
+    private static Item blackDiamondShulkerBoxItemBlock;
     // DIAMOND END
 
     // COPPER START
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static BlockShulkerBox whiteCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock whiteCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static Item whiteCopperShulkerBoxItemBlock;
+    private static Item whiteCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static BlockShulkerBox orangeCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock orangeCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static Item orangeCopperShulkerBoxItemBlock;
+    private static Item orangeCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static BlockShulkerBox magentaCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock magentaCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static Item magentaCopperShulkerBoxItemBlock;
+    private static Item magentaCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static BlockShulkerBox lightBlueCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock lightBlueCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static Item lightBlueCopperShulkerBoxItemBlock;
+    private static Item lightBlueCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static BlockShulkerBox yellowCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock yellowCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static Item yellowCopperShulkerBoxItemBlock;
+    private static Item yellowCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static BlockShulkerBox limeCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock limeCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static Item limeCopperShulkerBoxItemBlock;
+    private static Item limeCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static BlockShulkerBox pinkCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock pinkCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static Item pinkCopperShulkerBoxItemBlock;
+    private static Item pinkCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static BlockShulkerBox grayCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock grayCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static Item grayCopperShulkerBoxItemBlock;
+    private static Item grayCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static BlockShulkerBox lightGrayCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock lightGrayCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static Item lightGrayCopperShulkerBoxItemBlock;
+    private static Item lightGrayCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static BlockShulkerBox cyanCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock cyanCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static Item cyanCopperShulkerBoxItemBlock;
+    private static Item cyanCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static BlockShulkerBox purpleCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock purpleCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static Item purpleCopperShulkerBoxItemBlock;
+    private static Item purpleCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static BlockShulkerBox blueCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock blueCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static Item blueCopperShulkerBoxItemBlock;
+    private static Item blueCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static BlockShulkerBox brownCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock brownCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static Item brownCopperShulkerBoxItemBlock;
+    private static Item brownCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static BlockShulkerBox greenCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock greenCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static Item greenCopperShulkerBoxItemBlock;
+    private static Item greenCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static BlockShulkerBox redCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock redCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static Item redCopperShulkerBoxItemBlock;
+    private static Item redCopperShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static BlockShulkerBox blackCopperShulkerBoxBlock;
+    private static ShulkerBoxBlock blackCopperShulkerBoxBlock;
     @ObjectHolder(BlockNames.COPPER_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static Item blackCopperShulkerBoxItemBlock;
+    private static Item blackCopperShulkerBoxItemBlock;
     // COPPER END
 
     // SILVER START
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static BlockShulkerBox whiteSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock whiteSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static Item whiteSilverShulkerBoxItemBlock;
+    private static Item whiteSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static BlockShulkerBox orangeSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock orangeSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static Item orangeSilverShulkerBoxItemBlock;
+    private static Item orangeSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static BlockShulkerBox magentaSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock magentaSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static Item magentaSilverShulkerBoxItemBlock;
+    private static Item magentaSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static BlockShulkerBox lightBlueSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock lightBlueSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static Item lightBlueSilverShulkerBoxItemBlock;
+    private static Item lightBlueSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static BlockShulkerBox yellowSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock yellowSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static Item yellowSilverShulkerBoxItemBlock;
+    private static Item yellowSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static BlockShulkerBox limeSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock limeSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static Item limeSilverShulkerBoxItemBlock;
+    private static Item limeSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static BlockShulkerBox pinkSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock pinkSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static Item pinkSilverShulkerBoxItemBlock;
+    private static Item pinkSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static BlockShulkerBox graySilverShulkerBoxBlock;
+    private static ShulkerBoxBlock graySilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static Item graySilverShulkerBoxItemBlock;
+    private static Item graySilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static BlockShulkerBox lightGraySilverShulkerBoxBlock;
+    private static ShulkerBoxBlock lightGraySilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static Item lightGraySilverShulkerBoxItemBlock;
+    private static Item lightGraySilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static BlockShulkerBox cyanSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock cyanSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static Item cyanSilverShulkerBoxItemBlock;
+    private static Item cyanSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static BlockShulkerBox purpleSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock purpleSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static Item purpleSilverShulkerBoxItemBlock;
+    private static Item purpleSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static BlockShulkerBox blueSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock blueSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static Item blueSilverShulkerBoxItemBlock;
+    private static Item blueSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static BlockShulkerBox brownSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock brownSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static Item brownSilverShulkerBoxItemBlock;
+    private static Item brownSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static BlockShulkerBox greenSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock greenSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static Item greenSilverShulkerBoxItemBlock;
+    private static Item greenSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static BlockShulkerBox redSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock redSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static Item redSilverShulkerBoxItemBlock;
+    private static Item redSilverShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static BlockShulkerBox blackSilverShulkerBoxBlock;
+    private static ShulkerBoxBlock blackSilverShulkerBoxBlock;
     @ObjectHolder(BlockNames.SILVER_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static Item blackSilverShulkerBoxItemBlock;
+    private static Item blackSilverShulkerBoxItemBlock;
     // SILVER END
 
     // CRYSTAL START
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static BlockShulkerBox whiteCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock whiteCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static Item whiteCrystalShulkerBoxItemBlock;
+    private static Item whiteCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static BlockShulkerBox orangeCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock orangeCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static Item orangeCrystalShulkerBoxItemBlock;
+    private static Item orangeCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static BlockShulkerBox magentaCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock magentaCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static Item magentaCrystalShulkerBoxItemBlock;
+    private static Item magentaCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static BlockShulkerBox lightBlueCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock lightBlueCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static Item lightBlueCrystalShulkerBoxItemBlock;
+    private static Item lightBlueCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static BlockShulkerBox yellowCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock yellowCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static Item yellowCrystalShulkerBoxItemBlock;
+    private static Item yellowCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static BlockShulkerBox limeCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock limeCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static Item limeCrystalShulkerBoxItemBlock;
+    private static Item limeCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static BlockShulkerBox pinkCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock pinkCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static Item pinkCrystalShulkerBoxItemBlock;
+    private static Item pinkCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static BlockShulkerBox grayCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock grayCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static Item grayCrystalShulkerBoxItemBlock;
+    private static Item grayCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static BlockShulkerBox lightGrayCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock lightGrayCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static Item lightGrayCrystalShulkerBoxItemBlock;
+    private static Item lightGrayCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static BlockShulkerBox cyanCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock cyanCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static Item cyanCrystalShulkerBoxItemBlock;
+    private static Item cyanCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static BlockShulkerBox purpleCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock purpleCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static Item purpleCrystalShulkerBoxItemBlock;
+    private static Item purpleCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static BlockShulkerBox blueCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock blueCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static Item blueCrystalShulkerBoxItemBlock;
+    private static Item blueCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static BlockShulkerBox brownCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock brownCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static Item brownCrystalShulkerBoxItemBlock;
+    private static Item brownCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static BlockShulkerBox greenCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock greenCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static Item greenCrystalShulkerBoxItemBlock;
+    private static Item greenCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static BlockShulkerBox redCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock redCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static Item redCrystalShulkerBoxItemBlock;
+    private static Item redCrystalShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static BlockShulkerBox blackCrystalShulkerBoxBlock;
+    private static ShulkerBoxBlock blackCrystalShulkerBoxBlock;
     @ObjectHolder(BlockNames.CRYSTAL_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static Item blackCrystalShulkerBoxItemBlock;
+    private static Item blackCrystalShulkerBoxItemBlock;
     // CRYSTAL END
 
     // OBSIDIAN START
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static BlockShulkerBox whiteObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock whiteObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.WHITE)
-    public static Item whiteObsidianShulkerBoxItemBlock;
+    private static Item whiteObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static BlockShulkerBox orangeObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock orangeObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.ORANGE)
-    public static Item orangeObsidianShulkerBoxItemBlock;
+    private static Item orangeObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static BlockShulkerBox magentaObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock magentaObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.MAGENTA)
-    public static Item magentaObsidianShulkerBoxItemBlock;
+    private static Item magentaObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static BlockShulkerBox lightBlueObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock lightBlueObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.LIGHT_BLUE)
-    public static Item lightBlueObsidianShulkerBoxItemBlock;
+    private static Item lightBlueObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static BlockShulkerBox yellowObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock yellowObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.YELLOW)
-    public static Item yellowObsidianShulkerBoxItemBlock;
+    private static Item yellowObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static BlockShulkerBox limeObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock limeObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.LIME)
-    public static Item limeObsidianShulkerBoxItemBlock;
+    private static Item limeObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static BlockShulkerBox pinkObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock pinkObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.PINK)
-    public static Item pinkObsidianShulkerBoxItemBlock;
+    private static Item pinkObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static BlockShulkerBox grayObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock grayObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.GRAY)
-    public static Item grayObsidianShulkerBoxItemBlock;
+    private static Item grayObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static BlockShulkerBox lightGrayObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock lightGrayObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.LIGHT_GRAY)
-    public static Item lightGrayObsidianShulkerBoxItemBlock;
+    private static Item lightGrayObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static BlockShulkerBox cyanObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock cyanObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.CYAN)
-    public static Item cyanObsidianShulkerBoxItemBlock;
+    private static Item cyanObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static BlockShulkerBox purpleObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock purpleObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.PURPLE)
-    public static Item purpleObsidianShulkerBoxItemBlock;
+    private static Item purpleObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static BlockShulkerBox blueObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock blueObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.BLUE)
-    public static Item blueObsidianShulkerBoxItemBlock;
+    private static Item blueObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static BlockShulkerBox brownObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock brownObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.BROWN)
-    public static Item brownObsidianShulkerBoxItemBlock;
+    private static Item brownObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static BlockShulkerBox greenObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock greenObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.GREEN)
-    public static Item greenObsidianShulkerBoxItemBlock;
+    private static Item greenObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static BlockShulkerBox redObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock redObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.RED)
-    public static Item redObsidianShulkerBoxItemBlock;
+    private static Item redObsidianShulkerBoxItemBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static BlockShulkerBox blackObsidianShulkerBoxBlock;
+    private static ShulkerBoxBlock blackObsidianShulkerBoxBlock;
     @ObjectHolder(BlockNames.OBSIDIAN_SHULKER_BOX_COLOR + BlockColors.BLACK)
-    public static Item blackObsidianShulkerBoxItemBlock;
+    private static Item blackObsidianShulkerBoxItemBlock;
     // OBSIDIAN END
 
-    public static List<BlockShulkerBox> ironShulkerBoxes;
-    public static List<BlockShulkerBox> goldShulkerBoxes;
-    public static List<BlockShulkerBox> diamondShulkerBoxes;
-    public static List<BlockShulkerBox> copperShulkerBoxes;
-    public static List<BlockShulkerBox> silverShulkerBoxes;
-    public static List<BlockShulkerBox> crystalShulkerBoxes;
-    public static List<BlockShulkerBox> obsidianShulkerBoxes;
-    public static List<BlockShulkerBox> allShulkerBoxes;
-    public static List<Item> shulkerBoxItemBlocks;
+    public static List<ShulkerBoxBlock> ironShulkerBoxes;
+    public static List<ShulkerBoxBlock> goldShulkerBoxes;
+    public static List<ShulkerBoxBlock> diamondShulkerBoxes;
+    public static List<ShulkerBoxBlock> copperShulkerBoxes;
+    public static List<ShulkerBoxBlock> silverShulkerBoxes;
+    public static List<ShulkerBoxBlock> crystalShulkerBoxes;
+    public static List<ShulkerBoxBlock> obsidianShulkerBoxes;
+    private static List<ShulkerBoxBlock> allShulkerBoxes;
+    private static List<Item> shulkerBoxItemBlocks;
     //@formatter:on
 
     public IronShulkerBoxBlocks()
@@ -524,15 +524,15 @@ public class IronShulkerBoxBlocks
         {
             IForgeRegistry<Block> blockRegistry = event.getRegistry();
 
-            for (EnumDyeColor color : EnumDyeColor.values())
+            for (DyeColor color : DyeColor.values())
             {
-                blockRegistry.register(new BlockIronShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockGoldShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockDiamondShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockCopperShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockSilverShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockCrystalShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
-                blockRegistry.register(new BlockObsidianShulkerBox(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 10000.0F)));
+                blockRegistry.register(new IronShulkerBoxBlock(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new GoldShulkerBoxBlock(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new DiamondShulkerBoxBlock(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new CopperShulkerBoxBlock(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new SilverShulkerBoxBlock(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new CrystalShulkerBoxBlock(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 3.0F)));
+                blockRegistry.register(new ObsidianShulkerBoxBlock(color, Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 10000.0F)));
 
             }
         }
@@ -554,11 +554,11 @@ public class IronShulkerBoxBlocks
             allShulkerBoxes = Arrays.asList(whiteIronShulkerBoxBlock, orangeIronShulkerBoxBlock, magentaIronShulkerBoxBlock, lightBlueIronShulkerBoxBlock, yellowIronShulkerBoxBlock, limeIronShulkerBoxBlock, pinkIronShulkerBoxBlock, grayIronShulkerBoxBlock, lightGrayIronShulkerBoxBlock, cyanIronShulkerBoxBlock, purpleIronShulkerBoxBlock, blueIronShulkerBoxBlock, brownIronShulkerBoxBlock, greenIronShulkerBoxBlock, redIronShulkerBoxBlock, blackIronShulkerBoxBlock, whiteGoldShulkerBoxBlock, orangeGoldShulkerBoxBlock, magentaGoldShulkerBoxBlock, lightBlueGoldShulkerBoxBlock, yellowGoldShulkerBoxBlock, limeGoldShulkerBoxBlock, pinkGoldShulkerBoxBlock, grayGoldShulkerBoxBlock, lightGrayGoldShulkerBoxBlock, cyanGoldShulkerBoxBlock, purpleGoldShulkerBoxBlock, blueGoldShulkerBoxBlock, brownGoldShulkerBoxBlock, greenGoldShulkerBoxBlock, redGoldShulkerBoxBlock, blackGoldShulkerBoxBlock, whiteDiamondShulkerBoxBlock, orangeDiamondShulkerBoxBlock, magentaDiamondShulkerBoxBlock, lightBlueDiamondShulkerBoxBlock, yellowDiamondShulkerBoxBlock, limeDiamondShulkerBoxBlock, pinkDiamondShulkerBoxBlock, grayDiamondShulkerBoxBlock, lightGrayDiamondShulkerBoxBlock, cyanDiamondShulkerBoxBlock, purpleDiamondShulkerBoxBlock, blueDiamondShulkerBoxBlock, brownDiamondShulkerBoxBlock, greenDiamondShulkerBoxBlock, redDiamondShulkerBoxBlock, blackDiamondShulkerBoxBlock, whiteCopperShulkerBoxBlock, orangeCopperShulkerBoxBlock, magentaCopperShulkerBoxBlock, lightBlueCopperShulkerBoxBlock, yellowCopperShulkerBoxBlock, limeCopperShulkerBoxBlock, pinkCopperShulkerBoxBlock, grayCopperShulkerBoxBlock, lightGrayCopperShulkerBoxBlock, cyanCopperShulkerBoxBlock, purpleCopperShulkerBoxBlock, blueCopperShulkerBoxBlock, brownCopperShulkerBoxBlock, greenCopperShulkerBoxBlock, redCopperShulkerBoxBlock, blackCopperShulkerBoxBlock, whiteSilverShulkerBoxBlock, orangeSilverShulkerBoxBlock, magentaSilverShulkerBoxBlock, lightBlueSilverShulkerBoxBlock, yellowSilverShulkerBoxBlock, limeSilverShulkerBoxBlock, pinkSilverShulkerBoxBlock, graySilverShulkerBoxBlock, lightGraySilverShulkerBoxBlock, cyanSilverShulkerBoxBlock, purpleSilverShulkerBoxBlock, blueSilverShulkerBoxBlock, brownSilverShulkerBoxBlock, greenSilverShulkerBoxBlock, redSilverShulkerBoxBlock, blackSilverShulkerBoxBlock, whiteCrystalShulkerBoxBlock, orangeCrystalShulkerBoxBlock, magentaCrystalShulkerBoxBlock, lightBlueCrystalShulkerBoxBlock, yellowCrystalShulkerBoxBlock, limeCrystalShulkerBoxBlock, pinkCrystalShulkerBoxBlock, grayCrystalShulkerBoxBlock, lightGrayCrystalShulkerBoxBlock, cyanCrystalShulkerBoxBlock, purpleCrystalShulkerBoxBlock, blueCrystalShulkerBoxBlock, brownCrystalShulkerBoxBlock, greenCrystalShulkerBoxBlock, redCrystalShulkerBoxBlock, blackCrystalShulkerBoxBlock, whiteObsidianShulkerBoxBlock, orangeObsidianShulkerBoxBlock, magentaObsidianShulkerBoxBlock, lightBlueObsidianShulkerBoxBlock, yellowObsidianShulkerBoxBlock, limeObsidianShulkerBoxBlock, pinkObsidianShulkerBoxBlock, grayObsidianShulkerBoxBlock, lightGrayObsidianShulkerBoxBlock, cyanObsidianShulkerBoxBlock, purpleObsidianShulkerBoxBlock, blueObsidianShulkerBoxBlock, brownObsidianShulkerBoxBlock, greenObsidianShulkerBoxBlock, redObsidianShulkerBoxBlock, blackObsidianShulkerBoxBlock);
             //@formatter:on
 
-            itemBuilder = (new Item.Properties()).group(IronShulkerBoxCreativeTabs.IRON_SHULKER_BOX).setTEISR(() -> TileEntityIronShulkerBoxItemRenderer::new).maxStackSize(1);
+            itemBuilder = (new Item.Properties()).group(IronShulkerBoxCreativeTabs.IRON_SHULKER_BOX).setTEISR(() -> IronShulkerBoxItemStackTileEntityRenderer::new).maxStackSize(1);
 
-            for (BlockShulkerBox shulkerBox : allShulkerBoxes)
+            for (ShulkerBoxBlock shulkerBox : allShulkerBoxes)
             {
-                itemRegistry.register(new ItemShulkerBox(shulkerBox, itemBuilder));
+                itemRegistry.register(new ShulkerBoxBlockItem(shulkerBox, itemBuilder));
             }
         }
     }

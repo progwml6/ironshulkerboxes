@@ -1,17 +1,7 @@
-/*******************************************************************************
- * Copyright (c) 2012 cpw.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v3.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/gpl.html
- * <p>
- * Contributors:
- * cpw - initial API and implementation
- ******************************************************************************/
 package com.progwml6.ironshulkerbox.common.core;
 
 import com.progwml6.ironshulkerbox.IronShulkerBox;
-import com.progwml6.ironshulkerbox.common.items.ItemShulkerBoxChanger;
+import com.progwml6.ironshulkerbox.common.items.ShulkerBoxChangerItem;
 import com.progwml6.ironshulkerbox.common.items.ShulkerBoxChangerType;
 import com.progwml6.ironshulkerbox.common.util.ItemNames;
 import net.minecraft.item.Item;
@@ -68,15 +58,15 @@ public class IronShulkerBoxItems
 
             itemBuilder = (new Properties()).group(IronShulkerBoxCreativeTabs.IRON_SHULKER_BOX).maxStackSize(1);
 
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.IRON_GOLD));
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.GOLD_DIAMOND));
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.COPPER_SILVER));
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.SILVER_GOLD));
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.COPPER_IRON));
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.DIAMOND_CRYSTAL));
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.VANILLA_IRON));
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.VANILLA_COPPER));
-            itemRegistry.register(new ItemShulkerBoxChanger(itemBuilder, ShulkerBoxChangerType.DIAMOND_OBSIDIAN));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.IRON_GOLD));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.GOLD_DIAMOND));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.COPPER_SILVER));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.SILVER_GOLD));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.COPPER_IRON));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.DIAMOND_CRYSTAL));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.VANILLA_IRON));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.VANILLA_COPPER));
+            itemRegistry.register(new ShulkerBoxChangerItem(itemBuilder, ShulkerBoxChangerType.DIAMOND_OBSIDIAN));
         }
     }
 }

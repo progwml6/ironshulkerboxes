@@ -1,61 +1,63 @@
 package com.progwml6.ironshulkerbox.client.renderer;
 
 import com.google.common.primitives.SignedBytes;
-import com.progwml6.ironshulkerbox.common.blocks.BlockShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType;
-import com.progwml6.ironshulkerbox.common.tileentity.TileEntityCrystalShulkerBox;
-import com.progwml6.ironshulkerbox.common.tileentity.TileEntityIronShulkerBox;
-import net.minecraft.block.state.IBlockState;
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxBlock;
+import com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType;
+import com.progwml6.ironshulkerbox.common.tileentity.CrystalShulkerBoxTileEntity;
+import com.progwml6.ironshulkerbox.common.tileentity.IronShulkerBoxTileEntity;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderEntityItem;
-import net.minecraft.client.renderer.entity.model.ModelShulker;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.entity.model.ShulkerModel;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Random;
 
-public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends TileEntityRenderer<T>
+public class IronShulkerBoxTileEntityRenderer<T extends TileEntity> extends TileEntityRenderer<T>
 {
+    private final ShulkerModel<?> shulkerModel;
+
+    private static ItemEntity customItem;
+
     private Random random;
 
-    private RenderEntityItem itemRenderer;
-
-    private final ModelShulker model;
+    private ItemRenderer itemRenderer;
 
     private static float[][] shifts = { { 0.3F, 0.45F, 0.3F }, { 0.7F, 0.45F, 0.3F }, { 0.3F, 0.45F, 0.7F }, { 0.7F, 0.45F, 0.7F }, { 0.3F, 0.1F, 0.3F }, { 0.7F, 0.1F, 0.3F }, { 0.3F, 0.1F, 0.7F }, { 0.7F, 0.1F, 0.7F }, { 0.5F, 0.32F, 0.5F } };
 
-    private static EntityItem customitem = new EntityItem(null);
-
-    public TileEntityIronShulkerBoxRenderer()
+    public IronShulkerBoxTileEntityRenderer()
     {
-        this.model = new ModelShulker();
+        this.shulkerModel = new ShulkerModel();
         this.random = new Random();
     }
 
     @Override
     public void render(T tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage)
     {
-        EnumFacing enumFacing = EnumFacing.UP;
+        Direction direction = Direction.UP;
 
-        TileEntityIronShulkerBox tileEntity = (TileEntityIronShulkerBox) tileEntityIn;
+        IronShulkerBoxTileEntity tileEntity = (IronShulkerBoxTileEntity) tileEntityIn;
 
-        if (tileEntity.hasWorld())
+        if (tileEntityIn.hasWorld())
         {
-            IBlockState iblockstate = this.getWorld().getBlockState(tileEntity.getPos());
-            if (iblockstate.getBlock() instanceof BlockShulkerBox)
+            BlockState blockstate = this.getWorld().getBlockState(tileEntityIn.getPos());
+
+            if (blockstate.getBlock() instanceof ShulkerBoxBlock)
             {
-                enumFacing = (EnumFacing) iblockstate.get(BlockShulkerBox.FACING);
+                direction = blockstate.get(ShulkerBoxBlock.FACING);
             }
         }
 
-        IBlockState iBlockState = tileEntity.hasWorld() ? tileEntity.getBlockState() : (IBlockState) tileEntity.getBlockToUse().getDefaultState().with(BlockShulkerBox.FACING, EnumFacing.NORTH);
-        IronShulkerBoxType chestType = IronShulkerBoxType.IRON;
-        IronShulkerBoxType typeNew = BlockShulkerBox.getTypeFromBlock(iBlockState.getBlock());
+        BlockState iBlockState = tileEntity.hasWorld() ? tileEntity.getBlockState() : (BlockState) tileEntity.getBlockToUse().getDefaultState().with(ShulkerBoxBlock.FACING, Direction.NORTH);
+        ShulkerBoxType chestType = ShulkerBoxType.IRON;
+        ShulkerBoxType typeNew = ShulkerBoxBlock.getTypeFromBlock(iBlockState.getBlock());
 
         if (typeNew != null)
         {
@@ -66,7 +68,6 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
         GlStateManager.depthFunc(515);
         GlStateManager.depthMask(true);
         GlStateManager.disableCull();
-
         if (destroyStage >= 0)
         {
             this.bindTexture(DESTROY_STAGES[destroyStage]);
@@ -93,10 +94,11 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
         GlStateManager.translatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GlStateManager.scalef(1.0F, -1.0F, -1.0F);
         GlStateManager.translatef(0.0F, 1.0F, 0.0F);
+        float f = 0.9995F;
         GlStateManager.scalef(0.9995F, 0.9995F, 0.9995F);
         GlStateManager.translatef(0.0F, -1.0F, 0.0F);
 
-        switch (enumFacing)
+        switch (direction)
         {
             case DOWN:
                 GlStateManager.translatef(0.0F, 2.0F, 0.0F);
@@ -124,13 +126,10 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
                 GlStateManager.rotatef(90.0F, 0.0F, 0.0F, 1.0F);
         }
 
-        this.model.getBase().render(0.0625F);
-
+        this.shulkerModel.getBase().render(0.0625F);
         GlStateManager.translatef(0.0F, -tileEntity.getProgress(partialTicks) * 0.5F, 0.0F);
         GlStateManager.rotatef(270.0F * tileEntity.getProgress(partialTicks), 0.0F, 1.0F, 0.0F);
-
-        this.model.getLid().render(0.0625F);
-
+        this.shulkerModel.getLid().render(0.0625F);
         GlStateManager.enableCull();
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
@@ -143,12 +142,12 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
             GlStateManager.matrixMode(5888);
         }
 
-        if (chestType == IronShulkerBoxType.CRYSTAL)
+        if (chestType == ShulkerBoxType.CRYSTAL)
         {
             GlStateManager.enableCull();
         }
 
-        if (chestType.isTransparent() && tileEntity.getDistanceSq(this.rendererDispatcher.entityX, this.rendererDispatcher.entityY, this.rendererDispatcher.entityZ) < 128d)
+        if (false && chestType.isTransparent() && tileEntity.getDistanceSq(this.rendererDispatcher.renderInfo.func_216785_c().x, this.rendererDispatcher.renderInfo.func_216785_c().y, this.rendererDispatcher.renderInfo.func_216785_c().z) < 128d)
         {
             this.random.setSeed(254L);
 
@@ -159,7 +158,7 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
             float blockScale = 0.70F;
             float timeD = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTicks;
 
-            if (((TileEntityCrystalShulkerBox) tileEntity).getTopItems().get(1).isEmpty())
+            if (((CrystalShulkerBoxTileEntity) tileEntity).getTopItems().get(1).isEmpty())
             {
                 shift = 8;
                 blockScale = 0.85F;
@@ -168,10 +167,13 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
             GlStateManager.pushMatrix();
             GlStateManager.translatef((float) x, (float) y, (float) z);
 
-            customitem.setWorld(this.getWorld());
-            customitem.hoverStart = 0F;
+            if (customItem == null)
+            {
+                customItem = new ItemEntity(EntityType.ITEM, this.getWorld());
+            }
+            //customitem.hoverStart = 0F;
 
-            for (ItemStack item : ((TileEntityCrystalShulkerBox) tileEntity).getTopItems())
+            for (ItemStack item : ((CrystalShulkerBoxTileEntity) tileEntity).getTopItems())
             {
                 if (shift > shifts.length || shift > 8)
                 {
@@ -194,11 +196,11 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
                 GlStateManager.rotatef(timeD, 0F, 1F, 0F);
                 GlStateManager.scalef(blockScale, blockScale, blockScale);
 
-                customitem.setItem(item);
+                customItem.setItem(item);
 
                 if (this.itemRenderer == null)
                 {
-                    this.itemRenderer = new RenderEntityItem(Minecraft.getInstance().getRenderManager(), Minecraft.getInstance().getItemRenderer())
+                    this.itemRenderer = new ItemRenderer(Minecraft.getInstance().getRenderManager(), Minecraft.getInstance().getItemRenderer())
                     {
                         @Override
                         public int getModelCount(ItemStack stack)
@@ -220,7 +222,7 @@ public class TileEntityIronShulkerBoxRenderer<T extends TileEntity> extends Tile
                     };
                 }
 
-                this.itemRenderer.doRender(customitem, 0D, 0D, 0D, 0F, partialTicks);
+                this.itemRenderer.doRender(customItem, 0D, 0D, 0D, 0F, partialTicks);
 
                 GlStateManager.popMatrix();
             }

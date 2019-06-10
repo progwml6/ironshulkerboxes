@@ -1,5 +1,5 @@
 {
-    "type": "ironshulkerbox:shulker_box",
+    "type": "ironshulkerbox:shulker_box_crafting",
     "group": "ironshulkerbox:gray_shulker_box",
     "pattern": [
         "GGG",

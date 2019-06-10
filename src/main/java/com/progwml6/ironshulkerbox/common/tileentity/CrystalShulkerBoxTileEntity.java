@@ -1,40 +1,44 @@
 package com.progwml6.ironshulkerbox.common.tileentity;
 
-import com.progwml6.ironshulkerbox.client.gui.GUIShulkerBox;
-import com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType;
+import com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType;
 import com.progwml6.ironshulkerbox.common.core.IronShulkerBoxBlocks;
+import com.progwml6.ironshulkerbox.common.inventory.ShulkerBoxContainer;
 import com.progwml6.ironshulkerbox.common.network.PacketHandler;
 import com.progwml6.ironshulkerbox.common.network.packets.PacketTopStackSyncShulkerBox;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumDyeColor;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
 
-public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
+public class CrystalShulkerBoxTileEntity extends IronShulkerBoxTileEntity
 {
-    /** Crystal Shulker Box top stacks */
     private NonNullList<ItemStack> topStacks;
 
-    /** If the inventory got touched */
     private boolean inventoryTouched;
 
-    /** If the inventory had items */
     private boolean hadStuff;
 
-    public TileEntityCrystalShulkerBox()
+    public CrystalShulkerBoxTileEntity()
     {
         this(null);
     }
 
-    public TileEntityCrystalShulkerBox(@Nullable EnumDyeColor colorIn)
+    public CrystalShulkerBoxTileEntity(@Nullable DyeColor colorIn)
     {
-        super(IronShulkerBoxEntityType.CRYSTAL_SHULKER_BOX, colorIn, IronShulkerBoxType.CRYSTAL, IronShulkerBoxBlocks.crystalShulkerBoxes);
+        super(ShulkerBoxTileEntityType.CRYSTAL_SHULKER_BOX, colorIn, ShulkerBoxType.CRYSTAL, IronShulkerBoxBlocks.crystalShulkerBoxes);
         this.topStacks = NonNullList.<ItemStack>withSize(8, ItemStack.EMPTY);
+    }
+
+    @Override
+    protected Container createMenu(int id, PlayerInventory playerInventory)
+    {
+        return ShulkerBoxContainer.createCrystalContainer(id, playerInventory, this);
     }
 
     @Override
@@ -61,7 +65,7 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
     @Override
     public ItemStack getStackInSlot(int index)
     {
-        this.fillWithLoot((EntityPlayer) null);
+        this.fillWithLoot((PlayerEntity) null);
 
         this.inventoryTouched = true;
 
@@ -80,7 +84,7 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
             return;
         }
 
-        NonNullList<ItemStack> tempCopy = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        NonNullList<ItemStack> tempCopy = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 
         boolean hasStuff = false;
 
@@ -127,7 +131,7 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
 
             if (this.world != null)
             {
-                IBlockState iblockstate = this.world.getBlockState(this.pos);
+                BlockState iblockstate = this.world.getBlockState(this.pos);
 
                 this.world.notifyBlockUpdate(this.pos, iblockstate, iblockstate, 3);
             }
@@ -137,7 +141,7 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
 
         this.hadStuff = true;
 
-        Collections.sort(tempCopy, (stack1, stack2) -> {
+        tempCopy.sort((stack1, stack2) -> {
             if (stack1.isEmpty())
             {
                 return 1;
@@ -176,7 +180,7 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
 
         if (this.world != null)
         {
-            IBlockState iblockstate = this.world.getBlockState(this.pos);
+            BlockState iblockstate = this.world.getBlockState(this.pos);
 
             this.world.notifyBlockUpdate(this.pos, iblockstate, iblockstate, 3);
         }
@@ -222,11 +226,5 @@ public class TileEntityCrystalShulkerBox extends TileEntityIronShulkerBox
     public void receiveMessageFromServer(NonNullList<ItemStack> topStacks)
     {
         this.topStacks = topStacks;
-    }
-
-    @Override
-    public String getGuiID()
-    {
-        return GUIShulkerBox.GUI.OBSIDIAN.getGuiId().toString();
     }
 }

@@ -1,17 +1,17 @@
 package com.progwml6.ironshulkerbox.common.items;
 
-import com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType;
+import com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType;
 import com.progwml6.ironshulkerbox.common.util.ItemNames;
 import net.minecraft.util.ResourceLocation;
 
-import static com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType.COPPER;
-import static com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType.CRYSTAL;
-import static com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType.DIAMOND;
-import static com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType.GOLD;
-import static com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType.IRON;
-import static com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType.OBSIDIAN;
-import static com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType.SILVER;
-import static com.progwml6.ironshulkerbox.common.blocks.IronShulkerBoxType.VANILLA;
+import static com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType.COPPER;
+import static com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType.CRYSTAL;
+import static com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType.DIAMOND;
+import static com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType.GOLD;
+import static com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType.IRON;
+import static com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType.OBSIDIAN;
+import static com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType.SILVER;
+import static com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType.VANILLA;
 
 public enum ShulkerBoxChangerType
 {
@@ -27,20 +27,20 @@ public enum ShulkerBoxChangerType
     DIAMOND_OBSIDIAN(DIAMOND, OBSIDIAN, ItemNames.DIAMOND_OBSIDIAN_UPGRADE);
     //@formatter:on
 
-    public final IronShulkerBoxType source;
+    public final ShulkerBoxType source;
 
-    public final IronShulkerBoxType target;
+    public final ShulkerBoxType target;
 
     public final ResourceLocation itemName;
 
-    ShulkerBoxChangerType(IronShulkerBoxType source, IronShulkerBoxType target, String itemName)
+    ShulkerBoxChangerType(ShulkerBoxType source, ShulkerBoxType target, String itemName)
     {
         this.source = source;
         this.target = target;
         this.itemName = new ResourceLocation(itemName);
     }
 
-    public boolean canUpgrade(IronShulkerBoxType from)
+    public boolean canUpgrade(ShulkerBoxType from)
     {
         return from == this.source;
     }

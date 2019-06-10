@@ -1,7 +1,7 @@
 package com.progwml6.ironshulkerbox.common.util;
 
 import com.progwml6.ironshulkerbox.IronShulkerBox;
-import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.DyeColor;
 
 public class BlockNames
 {
@@ -33,7 +33,7 @@ public class BlockNames
 
     public static final String OBSIDIAN_SHULKER_BOX_COLOR = IronShulkerBox.MOD_ID + ":obsidian_shulker_box_";
 
-    public static final String getNameWithColor(String baseNameIn, EnumDyeColor colorIn)
+    public static final String getNameWithColor(String baseNameIn, DyeColor colorIn)
     {
         return baseNameIn + "_" + colorIn.getTranslationKey();
     }

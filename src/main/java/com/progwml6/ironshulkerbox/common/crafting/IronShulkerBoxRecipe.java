@@ -8,27 +8,28 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import com.progwml6.ironshulkerbox.common.blocks.BlockShulkerBox;
+import com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxBlock;
 import com.progwml6.ironshulkerbox.common.core.IronShulkerBoxRecipes;
+import com.progwml6.ironshulkerbox.common.util.RecipeNames;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JsonUtils;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.IRegistry;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class IronShulkerBoxRecipe implements IRecipe, net.minecraftforge.common.crafting.IShapedRecipe
+public class IronShulkerBoxRecipe implements ICraftingRecipe, net.minecraftforge.common.crafting.IShapedRecipe<CraftingInventory>
 {
     static int MAX_WIDTH = 3;
 
@@ -87,7 +88,7 @@ public class IronShulkerBoxRecipe implements IRecipe, net.minecraftforge.common.
     @Override
     public IRecipeSerializer<?> getSerializer()
     {
-        return IronShulkerBoxRecipes.CRAFTING_IRON_SHULKER_BOX;
+        return IronShulkerBoxRecipes.SHULKER_BOX_CRAFTING;
     }
 
     /**
@@ -128,38 +129,31 @@ public class IronShulkerBoxRecipe implements IRecipe, net.minecraftforge.common.
      * Used to check if a recipe matches current crafting inventory
      */
     @Override
-    public boolean matches(IInventory inv, World worldIn)
+    public boolean matches(CraftingInventory inv, World worldIn)
     {
-        if (false)
+        for (int i = 0; i <= inv.getWidth() - this.recipeWidth; ++i)
         {
-            return false;
-        }
-        else
-        {
-            for (int i = 0; i <= inv.getWidth() - this.recipeWidth; ++i)
+            for (int j = 0; j <= inv.getHeight() - this.recipeHeight; ++j)
             {
-                for (int j = 0; j <= inv.getHeight() - this.recipeHeight; ++j)
+                if (this.checkMatch(inv, i, j, true))
                 {
-                    if (this.checkMatch(inv, i, j, true))
-                    {
-                        return true;
-                    }
+                    return true;
+                }
 
-                    if (this.checkMatch(inv, i, j, false))
-                    {
-                        return true;
-                    }
+                if (this.checkMatch(inv, i, j, false))
+                {
+                    return true;
                 }
             }
-
-            return false;
         }
+
+        return false;
     }
 
     /**
      * Checks if the region of a crafting inventory is match for the recipe.
      */
-    private boolean checkMatch(IInventory craftingInventory, int p_77573_2_, int p_77573_3_, boolean p_77573_4_)
+    private boolean checkMatch(CraftingInventory craftingInventory, int p_77573_2_, int p_77573_3_, boolean p_77573_4_)
     {
         for (int i = 0; i < craftingInventory.getWidth(); ++i)
         {
@@ -194,7 +188,7 @@ public class IronShulkerBoxRecipe implements IRecipe, net.minecraftforge.common.
      * Returns an Item that is the result of this recipe
      */
     @Override
-    public ItemStack getCraftingResult(IInventory inv)
+    public ItemStack getCraftingResult(CraftingInventory inv)
     {
         ItemStack output = this.getRecipeOutput().copy();
 
@@ -206,7 +200,7 @@ public class IronShulkerBoxRecipe implements IRecipe, net.minecraftforge.common.
 
             if (!stack.isEmpty())
             {
-                if (Block.getBlockFromItem(stack.getItem()) instanceof BlockShulkerBox || Block.getBlockFromItem(stack.getItem()) instanceof net.minecraft.block.BlockShulkerBox)
+                if (Block.getBlockFromItem(stack.getItem()) instanceof ShulkerBoxBlock || Block.getBlockFromItem(stack.getItem()) instanceof net.minecraft.block.ShulkerBoxBlock)
                 {
                     itemstack = stack;
                 }
@@ -358,7 +352,7 @@ public class IronShulkerBoxRecipe implements IRecipe, net.minecraftforge.common.
         {
             for (int i = 0; i < astring.length; ++i)
             {
-                String s = JsonUtils.getString(jsonArr.get(i), "pattern[" + i + "]");
+                String s = JSONUtils.getString(jsonArr.get(i), "pattern[" + i + "]");
                 if (s.length() > MAX_WIDTH)
                 {
                     throw new JsonSyntaxException("Invalid pattern: too many columns, " + MAX_WIDTH + " is maximum");
@@ -402,46 +396,41 @@ public class IronShulkerBoxRecipe implements IRecipe, net.minecraftforge.common.
         return map;
     }
 
-    public static ItemStack deserializeItem(JsonObject p_199798_0_)
+    public static ItemStack deserializeItem(JsonObject jsonObject)
     {
-        String s = JsonUtils.getString(p_199798_0_, "item");
-        Item item = IRegistry.ITEM.get(new ResourceLocation(s));
-        if (item == null)
-        {
-            throw new JsonSyntaxException("Unknown item '" + s + "'");
-        }
-        else if (p_199798_0_.has("data"))
+        String s = JSONUtils.getString(jsonObject, "item");
+        Item item = Registry.ITEM.func_218349_b(new ResourceLocation(s)).orElseThrow(() -> {
+            return new JsonSyntaxException("Unknown item '" + s + "'");
+        });
+        if (jsonObject.has("data"))
         {
             throw new JsonParseException("Disallowed data tag found");
         }
         else
         {
-            int i = JsonUtils.getInt(p_199798_0_, "count", 1);
-            return new ItemStack(item, i);
+            int i = JSONUtils.getInt(jsonObject, "count", 1);
+            return net.minecraftforge.common.crafting.CraftingHelper.getItemStack(jsonObject, true);
         }
     }
 
-    public static class Serializer implements IRecipeSerializer<IronShulkerBoxRecipe>
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<IronShulkerBoxRecipe>
     {
-        private static final ResourceLocation NAME = new ResourceLocation("ironshulkerbox", "shulker_box");
+        public Serializer()
+        {
+            this.setRegistryName(RecipeNames.SHULKER_BOX_CRAFTING);
+        }
 
         @Override
         public IronShulkerBoxRecipe read(ResourceLocation recipeId, JsonObject json)
         {
-            String s = JsonUtils.getString(json, "group", "");
-            Map<String, Ingredient> map = IronShulkerBoxRecipe.deserializeKey(JsonUtils.getJsonObject(json, "key"));
-            String[] astring = IronShulkerBoxRecipe.shrink(IronShulkerBoxRecipe.patternFromJson(JsonUtils.getJsonArray(json, "pattern")));
+            String s = JSONUtils.getString(json, "group", "");
+            Map<String, Ingredient> map = IronShulkerBoxRecipe.deserializeKey(JSONUtils.getJsonObject(json, "key"));
+            String[] astring = IronShulkerBoxRecipe.shrink(IronShulkerBoxRecipe.patternFromJson(JSONUtils.getJsonArray(json, "pattern")));
             int i = astring[0].length();
             int j = astring.length;
             NonNullList<Ingredient> nonnulllist = IronShulkerBoxRecipe.deserializeIngredients(astring, map, i, j);
-            ItemStack itemstack = IronShulkerBoxRecipe.deserializeItem(JsonUtils.getJsonObject(json, "result"));
+            ItemStack itemstack = IronShulkerBoxRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
             return new IronShulkerBoxRecipe(recipeId, s, i, j, nonnulllist, itemstack);
-        }
-
-        @Override
-        public ResourceLocation getName()
-        {
-            return NAME;
         }
 
         @Override

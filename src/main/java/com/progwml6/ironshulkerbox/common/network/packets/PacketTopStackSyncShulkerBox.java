@@ -1,7 +1,7 @@
 package com.progwml6.ironshulkerbox.common.network.packets;
 
 import com.progwml6.ironshulkerbox.IronShulkerBox;
-import com.progwml6.ironshulkerbox.common.tileentity.TileEntityCrystalShulkerBox;
+import com.progwml6.ironshulkerbox.common.tileentity.CrystalShulkerBoxTileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
@@ -70,9 +70,9 @@ public class PacketTopStackSyncShulkerBox
                 {
                     TileEntity tile = world.getTileEntity(message.pos);
 
-                    if (tile instanceof TileEntityCrystalShulkerBox)
+                    if (tile instanceof CrystalShulkerBoxTileEntity)
                     {
-                        ((TileEntityCrystalShulkerBox) tile).receiveMessageFromServer(message.topStacks);
+                        ((CrystalShulkerBoxTileEntity) tile).receiveMessageFromServer(message.topStacks);
                     }
                 }
             });
