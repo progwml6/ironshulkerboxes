@@ -107,7 +107,7 @@ public class ShulkerBoxContainer extends Container
         {
             for (int shulkerBoxCol = 0; shulkerBoxCol < shulkerBoxType.rowLength; shulkerBoxCol++)
             {
-                this.addSlot(new ShulkerBoxSlot(inventory, shulkerBoxCol + shulkerBoxRow * shulkerBoxType.rowLength, 12 + shulkerBoxCol * 18, 8 + shulkerBoxRow * 18));
+                this.addSlot(new ShulkerBoxSlot(inventory, shulkerBoxCol + shulkerBoxRow * shulkerBoxType.rowLength, 12 + shulkerBoxCol * 18, 18 + shulkerBoxRow * 18));
             }
         }
 

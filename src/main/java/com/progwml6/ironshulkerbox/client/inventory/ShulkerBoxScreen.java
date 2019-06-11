@@ -14,34 +14,35 @@ public class ShulkerBoxScreen extends ContainerScreen<ShulkerBoxContainer>
 {
     private ShulkerBoxType shulkerBoxType;
 
+    private int textureXSize;
+    private int textureYSize;
+
     public ShulkerBoxScreen(ShulkerBoxContainer container, PlayerInventory playerInventory, ITextComponent title)
     {
         super(container, playerInventory, title);
 
         this.shulkerBoxType = container.getShulkerBoxType();
-        System.out.println("getShulkerBoxType: " + container.getShulkerBoxType());
-        System.out.println("xSize: " + container.getShulkerBoxType().xSize);
-        System.out.println("ySize: " + container.getShulkerBoxType().ySize);
-        this.xSize = this.shulkerBoxType.xSize;
-        this.ySize = this.shulkerBoxType.ySize;
+        this.xSize = container.getShulkerBoxType().xSize;
+        this.ySize = container.getShulkerBoxType().ySize;
+        this.textureXSize = container.getShulkerBoxType().textureXSize;
+        this.textureYSize = container.getShulkerBoxType().textureYSize;
 
         this.passEvents = false;
     }
 
     @Override
-    protected void init()
+    public void render(int mouseX, int mouseY, float partialTicks)
     {
-        super.init();
+        this.renderBackground();
+        super.render(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks)
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        System.out.println(mouseX);
-        System.out.println(mouseY);
-        this.renderBackground();
-        super.render(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseX);
+        this.font.drawString(this.title.getFormattedText(), 8.0F, 6.0F, 4210752);
+        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 96 + 2), 4210752);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class ShulkerBoxScreen extends ContainerScreen<ShulkerBoxContainer>
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
 
-        this.blit(x, y, 0, 0, this.xSize, this.ySize);
+        this.blit(x, y, 0, 0, this.xSize, this.ySize, textureXSize, textureYSize);
     }
 
 }

@@ -19,14 +19,14 @@ import javax.annotation.Nullable;
 
 public enum ShulkerBoxType implements IStringSerializable
 {
-    IRON(54, 9, "_iron.png", IronShulkerBoxTileEntity.class, BlockNames.IRON_SHULKER_BOX, 184, 202, new ResourceLocation("ironshulkerbox", "textures/gui/iron_container.png")),
-    GOLD(81, 9, "_gold.png", GoldShulkerBoxTileEntity.class, BlockNames.GOLD_SHULKER_BOX, 184, 256, new ResourceLocation("ironshulkerbox", "textures/gui/gold_container.png")),
-    DIAMOND(108, 12, "_diamond.png", DiamondShulkerBoxTileEntity.class, BlockNames.DIAMOND_SHULKER_BOX, 238, 256, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png")),
-    COPPER(45, 9, "_copper.png", CopperShulkerBoxTileEntity.class, BlockNames.COPPER_SHULKER_BOX, 184, 184, new ResourceLocation("ironshulkerbox", "textures/gui/copper_container.png")),
-    SILVER(72, 9, "_silver.png", SilverShulkerBoxTileEntity.class, BlockNames.SILVER_SHULKER_BOX, 184, 238, new ResourceLocation("ironshulkerbox", "textures/gui/silver_container.png")),
-    CRYSTAL(108, 12, "_crystal.png", CrystalShulkerBoxTileEntity.class, BlockNames.CRYSTAL_SHULKER_BOX, 238, 256, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png")),
-    OBSIDIAN(108, 12, "_obsidian.png", ObsidianShulkerBoxTileEntity.class, BlockNames.OBSIDIAN_SHULKER_BOX, 238, 256, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png")),
-    VANILLA(0, 0, "", null, null, 0, 0, null);
+    IRON(54, 9, "_iron.png", IronShulkerBoxTileEntity.class, BlockNames.IRON_SHULKER_BOX, 184, 222, new ResourceLocation("ironshulkerbox", "textures/gui/iron_container.png"), 256, 256),
+    GOLD(81, 9, "_gold.png", GoldShulkerBoxTileEntity.class, BlockNames.GOLD_SHULKER_BOX, 184, 276, new ResourceLocation("ironshulkerbox", "textures/gui/gold_container.png"), 256, 276),
+    DIAMOND(108, 12, "_diamond.png", DiamondShulkerBoxTileEntity.class, BlockNames.DIAMOND_SHULKER_BOX, 238, 276, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png"), 256, 276),
+    COPPER(45, 9, "_copper.png", CopperShulkerBoxTileEntity.class, BlockNames.COPPER_SHULKER_BOX, 184, 204, new ResourceLocation("ironshulkerbox", "textures/gui/copper_container.png"), 256, 256),
+    SILVER(72, 9, "_silver.png", SilverShulkerBoxTileEntity.class, BlockNames.SILVER_SHULKER_BOX, 184, 262, new ResourceLocation("ironshulkerbox", "textures/gui/silver_container.png"), 256, 276),
+    CRYSTAL(108, 12, "_crystal.png", CrystalShulkerBoxTileEntity.class, BlockNames.CRYSTAL_SHULKER_BOX, 238, 276, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png"), 256, 276),
+    OBSIDIAN(108, 12, "_obsidian.png", ObsidianShulkerBoxTileEntity.class, BlockNames.OBSIDIAN_SHULKER_BOX, 238, 276, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png"), 256, 276),
+    VANILLA(0, 0, "", null, null, 0, 0, null, 0, 0);
 
     public static final ShulkerBoxType VALUES[] = values();
 
@@ -40,15 +40,19 @@ public enum ShulkerBoxType implements IStringSerializable
 
     public final Class<? extends TileEntity> clazz;
 
+    public final String itemName;
+
     public final int xSize;
 
     public final int ySize;
 
-    public final String itemName;
-
     public final ResourceLocation guiTexture;
 
-    ShulkerBoxType(int size, int rowLength, String modelTexture, Class<? extends IronShulkerBoxTileEntity> clazz, String itemName, int xSize, int ySize, ResourceLocation guiTexture)
+    public final int textureXSize;
+
+    public final int textureYSize;
+
+    ShulkerBoxType(int size, int rowLength, String modelTexture, Class<? extends IronShulkerBoxTileEntity> clazz, String itemName, int xSize, int ySize, ResourceLocation guiTexture, int textureXSize, int textureYSize)
     {
         this.name = this.name().toLowerCase();
         this.size = size;
@@ -56,10 +60,11 @@ public enum ShulkerBoxType implements IStringSerializable
         this.modelTexture = modelTexture;
         this.clazz = clazz;
         this.itemName = itemName;
-
         this.xSize = xSize;
         this.ySize = ySize;
         this.guiTexture = guiTexture;
+        this.textureXSize = textureXSize;
+        this.textureYSize = textureYSize;
     }
 
     @Override

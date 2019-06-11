@@ -147,87 +147,90 @@ public class IronShulkerBoxTileEntityRenderer<T extends TileEntity> extends Tile
             GlStateManager.enableCull();
         }
 
-        if (false && chestType.isTransparent() && tileEntity.getDistanceSq(this.rendererDispatcher.renderInfo.func_216785_c().x, this.rendererDispatcher.renderInfo.func_216785_c().y, this.rendererDispatcher.renderInfo.func_216785_c().z) < 128d)
+        if (this.rendererDispatcher.renderInfo != null)
         {
-            this.random.setSeed(254L);
-
-            float shiftX;
-            float shiftY;
-            float shiftZ;
-            int shift = 0;
-            float blockScale = 0.70F;
-            float timeD = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTicks;
-
-            if (((CrystalShulkerBoxTileEntity) tileEntity).getTopItems().get(1).isEmpty())
+            if (chestType.isTransparent() && tileEntity.getDistanceSq(this.rendererDispatcher.renderInfo.func_216785_c().x, this.rendererDispatcher.renderInfo.func_216785_c().y, this.rendererDispatcher.renderInfo.func_216785_c().z) < 128d)
             {
-                shift = 8;
-                blockScale = 0.85F;
-            }
+                this.random.setSeed(254L);
 
-            GlStateManager.pushMatrix();
-            GlStateManager.translatef((float) x, (float) y, (float) z);
+                float shiftX;
+                float shiftY;
+                float shiftZ;
+                int shift = 0;
+                float blockScale = 0.70F;
+                float timeD = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTicks;
 
-            if (customItem == null)
-            {
-                customItem = new ItemEntity(EntityType.ITEM, this.getWorld());
-            }
-            //customitem.hoverStart = 0F;
-
-            for (ItemStack item : ((CrystalShulkerBoxTileEntity) tileEntity).getTopItems())
-            {
-                if (shift > shifts.length || shift > 8)
+                if (((CrystalShulkerBoxTileEntity) tileEntity).getTopItems().get(1).isEmpty())
                 {
-                    break;
+                    shift = 8;
+                    blockScale = 0.85F;
                 }
-
-                if (item.isEmpty())
-                {
-                    shift++;
-                    continue;
-                }
-
-                shiftX = shifts[shift][0];
-                shiftY = shifts[shift][1];
-                shiftZ = shifts[shift][2];
-                shift++;
 
                 GlStateManager.pushMatrix();
-                GlStateManager.translatef(shiftX, shiftY, shiftZ);
-                GlStateManager.rotatef(timeD, 0F, 1F, 0F);
-                GlStateManager.scalef(blockScale, blockScale, blockScale);
+                GlStateManager.translatef((float) x, (float) y, (float) z);
 
-                customItem.setItem(item);
-
-                if (this.itemRenderer == null)
+                if (customItem == null)
                 {
-                    this.itemRenderer = new ItemRenderer(Minecraft.getInstance().getRenderManager(), Minecraft.getInstance().getItemRenderer())
-                    {
-                        @Override
-                        public int getModelCount(ItemStack stack)
-                        {
-                            return SignedBytes.saturatedCast(Math.min(stack.getCount() / 32, 15) + 1);
-                        }
-
-                        @Override
-                        public boolean shouldBob()
-                        {
-                            return false;
-                        }
-
-                        @Override
-                        public boolean shouldSpreadItems()
-                        {
-                            return true;
-                        }
-                    };
+                    customItem = new ItemEntity(EntityType.ITEM, this.getWorld());
                 }
+                //customitem.hoverStart = 0F;
 
-                this.itemRenderer.doRender(customItem, 0D, 0D, 0D, 0F, partialTicks);
+                for (ItemStack item : ((CrystalShulkerBoxTileEntity) tileEntity).getTopItems())
+                {
+                    if (shift > shifts.length || shift > 8)
+                    {
+                        break;
+                    }
+
+                    if (item.isEmpty())
+                    {
+                        shift++;
+                        continue;
+                    }
+
+                    shiftX = shifts[shift][0];
+                    shiftY = shifts[shift][1];
+                    shiftZ = shifts[shift][2];
+                    shift++;
+
+                    GlStateManager.pushMatrix();
+                    GlStateManager.translatef(shiftX, shiftY, shiftZ);
+                    GlStateManager.rotatef(timeD, 0F, 1F, 0F);
+                    GlStateManager.scalef(blockScale, blockScale, blockScale);
+
+                    customItem.setItem(item);
+
+                    if (this.itemRenderer == null)
+                    {
+                        this.itemRenderer = new ItemRenderer(Minecraft.getInstance().getRenderManager(), Minecraft.getInstance().getItemRenderer())
+                        {
+                            @Override
+                            public int getModelCount(ItemStack stack)
+                            {
+                                return SignedBytes.saturatedCast(Math.min(stack.getCount() / 32, 15) + 1);
+                            }
+
+                            @Override
+                            public boolean shouldBob()
+                            {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean shouldSpreadItems()
+                            {
+                                return true;
+                            }
+                        };
+                    }
+
+                    this.itemRenderer.doRender(customItem, 0D, 0D, 0D, 0F, partialTicks);
+
+                    GlStateManager.popMatrix();
+                }
 
                 GlStateManager.popMatrix();
             }
-
-            GlStateManager.popMatrix();
         }
     }
 }
