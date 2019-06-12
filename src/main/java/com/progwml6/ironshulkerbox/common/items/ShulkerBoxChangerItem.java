@@ -1,9 +1,9 @@
 package com.progwml6.ironshulkerbox.common.items;
 
+import com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxBlock;
 import com.progwml6.ironshulkerbox.common.blocks.ShulkerBoxType;
 import com.progwml6.ironshulkerbox.common.tileentity.IronShulkerBoxTileEntity;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -72,7 +72,7 @@ public class ShulkerBoxChangerItem extends Item
 
         if (this.type.canUpgrade(ShulkerBoxType.VANILLA))
         {
-            if (!(world.getBlockState(blockPos).getBlock() instanceof ShulkerBoxBlock))
+            if (!(world.getBlockState(blockPos).getBlock() instanceof net.minecraft.block.ShulkerBoxBlock))
             {
                 return ActionResultType.PASS;
             }
@@ -126,7 +126,7 @@ public class ShulkerBoxChangerItem extends Item
             else if (tileEntity instanceof ShulkerBoxTileEntity)
             {
                 BlockState shulkerBoxState = world.getBlockState(blockPos);
-                shulkerBoxFacing = shulkerBoxState.get(ShulkerBoxBlock.FACING);
+                shulkerBoxFacing = shulkerBoxState.get(net.minecraft.block.ShulkerBoxBlock.FACING);
                 ShulkerBoxTileEntity shulkerBox = (ShulkerBoxTileEntity) tileEntity;
 
                 if (!this.type.canUpgrade(ShulkerBoxType.VANILLA))

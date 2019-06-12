@@ -67,7 +67,7 @@ public class IronShulkerBoxTileEntity extends LockableLootTileEntity implements 
 
     public IronShulkerBoxTileEntity(@Nullable DyeColor colorIn)
     {
-        this(ShulkerBoxTileEntityType.IRON_SHULKER_BOX, colorIn, ShulkerBoxType.OBSIDIAN, IronShulkerBoxBlocks.ironShulkerBoxes);
+        this(ShulkerBoxTileEntityType.IRON_SHULKER_BOX, colorIn, ShulkerBoxType.IRON, IronShulkerBoxBlocks.ironShulkerBoxes);
     }
 
     public IronShulkerBoxTileEntity(TileEntityType<?> typeIn, @Nullable DyeColor colorIn, ShulkerBoxType shulkerBoxTypeIn, List<ShulkerBoxBlock> blockListIn)

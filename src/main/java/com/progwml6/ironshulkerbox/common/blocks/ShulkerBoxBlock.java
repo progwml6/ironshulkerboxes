@@ -1,5 +1,6 @@
 package com.progwml6.ironshulkerbox.common.blocks;
 
+import com.progwml6.ironshulkerbox.IronShulkerBox;
 import com.progwml6.ironshulkerbox.common.core.IronShulkerBoxBlocks;
 import com.progwml6.ironshulkerbox.common.tileentity.IronShulkerBoxTileEntity;
 import com.progwml6.ironshulkerbox.common.util.BlockNames;
@@ -55,7 +56,7 @@ public abstract class ShulkerBoxBlock extends Block
 {
     public static final EnumProperty<Direction> FACING = DirectionalBlock.FACING;
 
-    public static final ResourceLocation field_220169_b = new ResourceLocation("contents");
+    public static final ResourceLocation contents = new ResourceLocation(IronShulkerBox.MOD_ID, "contents");
 
     protected final DyeColor color;
 
@@ -189,7 +190,7 @@ public abstract class ShulkerBoxBlock extends Block
         if (tileentity instanceof IronShulkerBoxTileEntity)
         {
             IronShulkerBoxTileEntity shulkerboxtileentity = (IronShulkerBoxTileEntity) tileentity;
-            lootBuilder = lootBuilder.withDynamicDrop(field_220169_b, (lootContext, itemStackConsumer) -> {
+            lootBuilder = lootBuilder.withDynamicDrop(contents, (lootContext, itemStackConsumer) -> {
                 for (int i = 0; i < shulkerboxtileentity.getSizeInventory(); ++i)
                 {
                     itemStackConsumer.accept(shulkerboxtileentity.getStackInSlot(i));

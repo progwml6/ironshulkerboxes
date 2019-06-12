@@ -23,7 +23,7 @@ public enum ShulkerBoxType implements IStringSerializable
     GOLD(81, 9, "_gold.png", GoldShulkerBoxTileEntity.class, BlockNames.GOLD_SHULKER_BOX, 184, 276, new ResourceLocation("ironshulkerbox", "textures/gui/gold_container.png"), 256, 276),
     DIAMOND(108, 12, "_diamond.png", DiamondShulkerBoxTileEntity.class, BlockNames.DIAMOND_SHULKER_BOX, 238, 276, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png"), 256, 276),
     COPPER(45, 9, "_copper.png", CopperShulkerBoxTileEntity.class, BlockNames.COPPER_SHULKER_BOX, 184, 204, new ResourceLocation("ironshulkerbox", "textures/gui/copper_container.png"), 256, 256),
-    SILVER(72, 9, "_silver.png", SilverShulkerBoxTileEntity.class, BlockNames.SILVER_SHULKER_BOX, 184, 262, new ResourceLocation("ironshulkerbox", "textures/gui/silver_container.png"), 256, 276),
+    SILVER(72, 9, "_silver.png", SilverShulkerBoxTileEntity.class, BlockNames.SILVER_SHULKER_BOX, 184, 258, new ResourceLocation("ironshulkerbox", "textures/gui/silver_container.png"), 256, 276),
     CRYSTAL(108, 12, "_crystal.png", CrystalShulkerBoxTileEntity.class, BlockNames.CRYSTAL_SHULKER_BOX, 238, 276, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png"), 256, 276),
     OBSIDIAN(108, 12, "_obsidian.png", ObsidianShulkerBoxTileEntity.class, BlockNames.OBSIDIAN_SHULKER_BOX, 238, 276, new ResourceLocation("ironshulkerbox", "textures/gui/diamond_container.png"), 256, 276),
     VANILLA(0, 0, "", null, null, 0, 0, null, 0, 0);

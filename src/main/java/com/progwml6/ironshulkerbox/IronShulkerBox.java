@@ -24,7 +24,6 @@ public class IronShulkerBox
     {
         instance = this;
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::preInit);
-        //ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandler::openGui);
     }
 
     private void preInit(final FMLCommonSetupEvent event)
