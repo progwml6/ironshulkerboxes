@@ -1,20 +1,20 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "ironshulkerbox:upgrades",
-    "pattern": [
-        "MMM",
-        "MSM",
-        "MMM"
-    ],
-    "key": {
-        "M": {
-            "constant": "ironshulkerbox:iron"
-        },
-        "S": {
-            "constant": "ironshulkerbox:shulker_shell"
-        }
-    },
-    "result": {
-        "item": "ironshulkerbox:vanilla_iron_shulker_box_upgrade"
-    }
+	"type": "minecraft:crafting_shaped",
+	"group": "ironshulkerbox:upgrades",
+	"pattern": [
+		"MMM",
+		"MSM",
+		"MMM"
+	],
+	"key": {
+		"M": {
+			"tag": "forge:ingots/iron"
+		},
+		"S": {
+			"item": "minecraft:shulker_shell"
+		}
+	},
+	"result": {
+		"item": "ironshulkerbox:vanilla_iron_shulker_box_upgrade"
+	}
 }

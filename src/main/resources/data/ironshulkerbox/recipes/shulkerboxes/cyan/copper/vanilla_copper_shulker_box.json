@@ -8,7 +8,7 @@
 	],
 	"key": {
 		"M": {
-			"constant": "ironshulkerbox:copper"
+			"tag": "forge:ingots/copper"
 		},
 		"S": {
 			"item": "minecraft:cyan_shulker_box"

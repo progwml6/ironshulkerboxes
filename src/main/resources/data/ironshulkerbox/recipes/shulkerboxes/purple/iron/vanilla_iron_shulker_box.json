@@ -1,20 +1,20 @@
 {
-    "type": "ironshulkerbox:shulker_box_crafting",
-    "group": "ironshulkerbox:purple_shulker_box",
-    "pattern": [
-        "MMM",
-        "MSM",
-        "MMM"
-    ],
-    "key": {
-        "M": {
-            "constant": "ironshulkerbox:iron"
-        },
-        "S": {
-            "item": "minecraft:purple_shulker_box"
-        }
-    },
-    "result": {
-        "item": "ironshulkerbox:iron_shulker_box_purple"
-    }
+	"type": "ironshulkerbox:shulker_box_crafting",
+	"group": "ironshulkerbox:purple_shulker_box",
+	"pattern": [
+		"MMM",
+		"MSM",
+		"MMM"
+	],
+	"key": {
+		"M": {
+			"tag": "forge:ingots/iron"
+		},
+		"S": {
+			"item": "minecraft:purple_shulker_box"
+		}
+	},
+	"result": {
+		"item": "ironshulkerbox:iron_shulker_box_purple"
+	}
 }

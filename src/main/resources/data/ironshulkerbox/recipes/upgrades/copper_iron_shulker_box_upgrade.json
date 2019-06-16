@@ -8,13 +8,13 @@
 	],
 	"key": {
 		"M": {
-			"constant": "ironshulkerbox:iron"
+			"tag": "forge:ingots/iron"
 		},
 		"S": {
-			"constant": "ironshulkerbox:copper"
+			"tag": "forge:gems/lapis"
 		},
 		"G": {
-			"constant": "ironshulkerbox:glass"
+			"tag": "forge:storage_blocks"
 		}
 	},
 	"result": {

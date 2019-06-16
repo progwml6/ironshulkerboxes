@@ -1,20 +1,20 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "ironshulkerbox:upgrades",
-    "pattern": [
-        "MMM",
-        "MSM",
-        "MMM"
-    ],
-    "key": {
-        "M": {
-            "constant": "ironshulkerbox:silver"
-        },
-        "S": {
-            "constant": "ironshulkerbox:copper"
-        }
-    },
-    "result": {
-        "item": "ironshulkerbox:copper_silver_shulker_box_upgrade"
-    }
+	"type": "minecraft:crafting_shaped",
+	"group": "ironshulkerbox:upgrades",
+	"pattern": [
+		"MMM",
+		"MSM",
+		"MMM"
+	],
+	"key": {
+		"M": {
+			"tag": "forge:ingots/silver"
+		},
+		"S": {
+			"tag": "forge:ingots/copper"
+		}
+	},
+	"result": {
+		"item": "ironshulkerbox:copper_silver_shulker_box_upgrade"
+	}
 }
