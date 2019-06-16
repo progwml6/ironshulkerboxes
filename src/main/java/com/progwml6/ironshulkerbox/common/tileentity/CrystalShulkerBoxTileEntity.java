@@ -12,6 +12,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nullable;
@@ -220,7 +221,7 @@ public class CrystalShulkerBoxTileEntity extends IronShulkerBoxTileEntity
     {
         NonNullList<ItemStack> stacks = this.buildItemStackDataList();
 
-        PacketHandler.send(PacketDistributor.TRACKING_CHUNK.with(() -> this.getWorld().getChunk(this.getPos())), new PacketTopStackSyncShulkerBox(this.getWorld().getDimension().getType().getId(), this.getPos(), stacks));
+        PacketHandler.send(PacketDistributor.TRACKING_CHUNK.with(() -> (Chunk) this.getWorld().getChunk(this.getPos())), new PacketTopStackSyncShulkerBox(this.getWorld().getDimension().getType().getId(), this.getPos(), stacks));
     }
 
     public void receiveMessageFromServer(NonNullList<ItemStack> topStacks)

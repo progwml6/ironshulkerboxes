@@ -387,7 +387,7 @@ public class IronShulkerBoxTileEntity extends LockableLootTileEntity implements 
 
     public float getProgress(float p_190585_1_)
     {
-        return MathHelper.func_219799_g(p_190585_1_, this.progressOld, this.progress);
+        return MathHelper.lerp(p_190585_1_, this.progressOld, this.progress);
     }
 
     @OnlyIn(Dist.CLIENT)

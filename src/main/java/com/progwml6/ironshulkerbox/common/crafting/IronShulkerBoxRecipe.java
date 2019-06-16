@@ -399,7 +399,7 @@ public class IronShulkerBoxRecipe implements ICraftingRecipe, net.minecraftforge
     public static ItemStack deserializeItem(JsonObject jsonObject)
     {
         String s = JSONUtils.getString(jsonObject, "item");
-        Item item = Registry.ITEM.func_218349_b(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = Registry.ITEM.getValue(new ResourceLocation(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
         if (jsonObject.has("data"))

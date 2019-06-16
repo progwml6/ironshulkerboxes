@@ -96,7 +96,7 @@ public class ShulkerBoxContainer extends Container
     public ShulkerBoxContainer(ContainerType<?> containerType, int windowId, PlayerInventory playerInventory, IInventory inventory, ShulkerBoxType shulkerBoxType)
     {
         super(containerType, windowId);
-        func_216962_a(inventory, shulkerBoxType.size);
+        assertInventorySize(inventory, shulkerBoxType.size);
 
         this.inventory = inventory;
         this.shulkerBoxType = shulkerBoxType;
