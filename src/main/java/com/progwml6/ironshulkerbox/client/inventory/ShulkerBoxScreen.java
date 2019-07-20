@@ -15,6 +15,7 @@ public class ShulkerBoxScreen extends ContainerScreen<ShulkerBoxContainer>
     private ShulkerBoxType shulkerBoxType;
 
     private int textureXSize;
+
     private int textureYSize;
 
     public ShulkerBoxScreen(ShulkerBoxContainer container, PlayerInventory playerInventory, ITextComponent title)
