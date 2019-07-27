@@ -2,9 +2,9 @@
 	"type": "minecraft:crafting_shaped",
 	"group": "ironshulkerbox:upgrades",
 	"pattern": [
-		"GGG",
-		"MSM",
-		"GGG"
+		"GMG",
+		"GSG",
+		"GMG"
 	],
 	"key": {
 		"M": {
