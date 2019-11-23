@@ -141,7 +141,11 @@ public class ShulkerBoxChangerItem extends Item
                     shulkerBoxContents.set(i, shulkerBox.getStackInSlot(i));
                 }
 
-                shulkerBoxColor = shulkerBox.getColor();
+                shulkerBoxColor = ((net.minecraft.block.ShulkerBoxBlock) world.getBlockState(blockPos).getBlock()).getColor();
+
+                if (shulkerBoxColor == null) {
+                    shulkerBoxColor = DyeColor.PURPLE;
+                }
 
                 customName = shulkerBox.getCustomName();
 

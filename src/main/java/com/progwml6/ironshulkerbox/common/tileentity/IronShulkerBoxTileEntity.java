@@ -390,7 +390,6 @@ public class IronShulkerBoxTileEntity extends LockableLootTileEntity implements 
         return MathHelper.lerp(p_190585_1_, this.progressOld, this.progress);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public DyeColor getColor()
     {
         if (this.needsColorFromWorld)
