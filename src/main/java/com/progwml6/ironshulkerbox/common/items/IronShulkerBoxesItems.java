@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class IronShulkerBoxesItems {
 
-  public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, IronShulkerBoxes.MOD_ID);
+  public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, IronShulkerBoxes.MOD_ID);
 
   public static final ImmutableMap<IronShulkerBoxesUpgradeType, RegistryObject<ShulkerBoxUpgradeItem>> UPGRADES = ImmutableMap.copyOf(Arrays.stream(IronShulkerBoxesUpgradeType.values())
     .collect(Collectors.toMap(Function.identity(), type -> register(type.name().toLowerCase(Locale.ROOT) + "_shulker_box_upgrade",

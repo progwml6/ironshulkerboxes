@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class IronShulkerBoxesTileEntityTypes {
 
-  public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, IronShulkerBoxes.MOD_ID);
+  public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, IronShulkerBoxes.MOD_ID);
 
   public static final RegistryObject<TileEntityType<IronShulkerBoxTileEntity>> IRON_SHULKER_BOX = TILE_ENTITIES.register("iron_shulker_box",
     () -> new TileEntityType<>(IronShulkerBoxTileEntity::new, createBlockSet(ShulkerBoxesBlocks.IRON_SHULKER_BOXES), null));

@@ -8,7 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class IronShulkerBoxesContainerTypes {
 
-  public static final DeferredRegister<ContainerType<?>> CONTAINERS = new DeferredRegister<>(ForgeRegistries.CONTAINERS, IronShulkerBoxes.MOD_ID);
+  public static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, IronShulkerBoxes.MOD_ID);
 
   public static final RegistryObject<ContainerType<IronShulkerBoxContainer>> IRON_SHULKER_BOX = CONTAINERS.register("iron_shulker_box", () -> new ContainerType<>(IronShulkerBoxContainer::createIronContainer));
 

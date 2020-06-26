@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.tileentity.ShulkerBoxTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
@@ -26,8 +27,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -175,7 +176,7 @@ public class GenericIronShulkerBoxTileEntity extends LockableLootTileEntity impl
                 d2 = d2 + 0.01D;
             }
 
-            entity.move(MoverType.SHULKER_BOX, new Vec3d(d0 * (double) direction.getXOffset(), d1 * (double) direction.getYOffset(), d2 * (double) direction.getZOffset()));
+            entity.move(MoverType.SHULKER_BOX, new Vector3d(d0 * (double) direction.getXOffset(), d1 * (double) direction.getYOffset(), d2 * (double) direction.getZOffset()));
           }
         }
       }
@@ -210,7 +211,7 @@ public class GenericIronShulkerBoxTileEntity extends LockableLootTileEntity impl
   }
 
   private void updateNeighbors() {
-    this.getBlockState().updateNeighbors(this.getWorld(), this.getPos(), 3);
+    this.getBlockState().func_235734_a_(this.getWorld(), this.getPos(), 3);
   }
 
   @Override
@@ -247,8 +248,8 @@ public class GenericIronShulkerBoxTileEntity extends LockableLootTileEntity impl
   }
 
   @Override
-  public void read(CompoundNBT compound) {
-    super.read(compound);
+  public void func_230337_a_(BlockState blockState, CompoundNBT compound) {
+    super.func_230337_a_(blockState, compound);
 
     this.loadFromNbt(compound);
   }
@@ -348,6 +349,10 @@ public class GenericIronShulkerBoxTileEntity extends LockableLootTileEntity impl
 
   public Block getBlockToUse() {
     return this.blocksToUse.get(color.getId());
+  }
+
+  public boolean isClosed() {
+    return this.animationStatus == GenericIronShulkerBoxTileEntity.AnimationStatus.CLOSED;
   }
 
   public enum AnimationStatus {

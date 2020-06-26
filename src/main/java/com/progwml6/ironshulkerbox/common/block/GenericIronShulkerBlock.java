@@ -19,6 +19,8 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -37,14 +39,13 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootParameters;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -63,11 +64,6 @@ public class GenericIronShulkerBlock extends Block {
     this.color = color;
     this.type = type;
     this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP));
-  }
-
-  @Override
-  public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
-    return true;
   }
 
   @Override
@@ -215,15 +211,15 @@ public class GenericIronShulkerBlock extends Block {
             ++j;
             if (i <= 4) {
               ++i;
-              ITextComponent itextcomponent = itemstack.getDisplayName().deepCopy();
-              itextcomponent.appendText(" x").appendText(String.valueOf(itemstack.getCount()));
+              IFormattableTextComponent itextcomponent = itemstack.getDisplayName().func_230532_e_();
+              itextcomponent.func_240702_b_(" x").func_240702_b_(String.valueOf(itemstack.getCount()));
               tooltip.add(itextcomponent);
             }
           }
         }
 
         if (j - i > 0) {
-          tooltip.add((new TranslationTextComponent("container.shulkerBox.more", j - i)).applyTextStyle(TextFormatting.ITALIC));
+          tooltip.add((new TranslationTextComponent("container.shulkerBox.more", j - i)).func_240699_a_(TextFormatting.ITALIC));
         }
       }
     }

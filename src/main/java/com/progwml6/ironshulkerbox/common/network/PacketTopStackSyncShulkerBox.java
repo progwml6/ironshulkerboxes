@@ -16,20 +16,16 @@ import java.util.function.Supplier;
 
 public class PacketTopStackSyncShulkerBox {
 
-  private final int dimension;
-
   private final BlockPos pos;
 
   private final NonNullList<ItemStack> topStacks;
 
-  public PacketTopStackSyncShulkerBox(int dimension, BlockPos pos, NonNullList<ItemStack> topStacks) {
-    this.dimension = dimension;
+  public PacketTopStackSyncShulkerBox(BlockPos pos, NonNullList<ItemStack> topStacks) {
     this.pos = pos;
     this.topStacks = topStacks;
   }
 
   public static void encode(PacketTopStackSyncShulkerBox msg, PacketBuffer buf) {
-    buf.writeInt(msg.dimension);
     buf.writeInt(msg.pos.getX());
     buf.writeInt(msg.pos.getY());
     buf.writeInt(msg.pos.getZ());
@@ -53,7 +49,7 @@ public class PacketTopStackSyncShulkerBox {
       topStacks.set(item, itemStack);
     }
 
-    return new PacketTopStackSyncShulkerBox(dimension, pos, topStacks);
+    return new PacketTopStackSyncShulkerBox(pos, topStacks);
   }
 
   public static class Handler {

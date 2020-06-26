@@ -186,7 +186,7 @@ public class CrystalShulkerBoxTileEntity extends GenericIronShulkerBoxTileEntity
   protected void sendTopStacksPacket() {
     NonNullList<ItemStack> stacks = this.buildItemStackDataList();
 
-    PacketHandler.send(PacketDistributor.TRACKING_CHUNK.with(() -> (Chunk) this.getWorld().getChunk(this.getPos())), new PacketTopStackSyncShulkerBox(this.getWorld().getDimension().getType().getId(), this.getPos(), stacks));
+    PacketHandler.send(PacketDistributor.TRACKING_CHUNK.with(() -> (Chunk) this.getWorld().getChunk(this.getPos())), new PacketTopStackSyncShulkerBox(this.getPos(), stacks));
   }
 
   public void receiveMessageFromServer(NonNullList<ItemStack> topStacks) {
