@@ -1,6 +1,7 @@
 modLoader="javafml"
-loaderVersion="[24,)"
+loaderVersion="[${javafml_min},${javafml_max})"
 issueTrackerURL="https://github.com/progwml6/ironshulkerboxes/issues"
+license="GNU General Public License v3.0"
 
 [[mods]]
     modId="ironshulkerbox"
@@ -16,6 +17,6 @@ The feature shulker box is the crystal chest, which is transparent - some invent
     [[dependencies.ironshulkerbox]]
         modId="forge"
         mandatory=true
-        versionRange="[${forge_version},)"
+        versionRange="[${forge_version_min},${forge_version_max})"
         ordering="NONE"
         side="BOTH"

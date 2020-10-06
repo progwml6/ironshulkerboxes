@@ -4,10 +4,12 @@ import com.progwml6.ironshulkerbox.client.screen.IronShulkerBoxScreen;
 import com.progwml6.ironshulkerbox.client.tileentity.IronShulkerBoxTileEntityRenderer;
 import com.progwml6.ironshulkerbox.common.block.ShulkerBoxesBlocks;
 import com.progwml6.ironshulkerbox.common.block.tileentity.IronShulkerBoxesTileEntityTypes;
+import com.progwml6.ironshulkerbox.common.data.IronShulkerBoxesRecipeProvider;
 import com.progwml6.ironshulkerbox.common.inventory.IronShulkerBoxesContainerTypes;
 import com.progwml6.ironshulkerbox.common.items.IronShulkerBoxesItems;
 import com.progwml6.ironshulkerbox.common.network.PacketHandler;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -78,6 +80,10 @@ public class IronShulkerBoxes {
   }
 
   private void gatherData(GatherDataEvent event) {
+    DataGenerator datagenerator = event.getGenerator();
 
+    if (event.includeServer()) {
+      datagenerator.addProvider(new IronShulkerBoxesRecipeProvider(datagenerator));
+    }
   }
 }

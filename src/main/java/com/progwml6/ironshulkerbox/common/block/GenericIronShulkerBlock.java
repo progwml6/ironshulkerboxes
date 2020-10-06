@@ -211,15 +211,15 @@ public class GenericIronShulkerBlock extends Block {
             ++j;
             if (i <= 4) {
               ++i;
-              IFormattableTextComponent itextcomponent = itemstack.getDisplayName().func_230532_e_();
-              itextcomponent.func_240702_b_(" x").func_240702_b_(String.valueOf(itemstack.getCount()));
+              IFormattableTextComponent itextcomponent = itemstack.getDisplayName().deepCopy();
+              itextcomponent.appendString(" x").appendString(String.valueOf(itemstack.getCount()));
               tooltip.add(itextcomponent);
             }
           }
         }
 
         if (j - i > 0) {
-          tooltip.add((new TranslationTextComponent("container.shulkerBox.more", j - i)).func_240699_a_(TextFormatting.ITALIC));
+          tooltip.add((new TranslationTextComponent("container.shulkerBox.more", j - i)).mergeStyle(TextFormatting.ITALIC));
         }
       }
     }

@@ -42,11 +42,11 @@ public class ShulkerBoxUpgradeItem extends Item {
   public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
     if (I18n.hasKey("ironshulkerbox.upgrade.tooltip")) {
       if (I18n.hasKey("ironshulkerbox." + this.type.source.name) && I18n.hasKey("ironshulkerbox." + this.type.target.name)) {
-        tooltip.add((new TranslationTextComponent("ironshulkerbox.upgrade.tooltip", new TranslationTextComponent("ironshulkerbox." + this.type.source.name).func_240699_a_(TextFormatting.BOLD), new TranslationTextComponent("ironshulkerbox." + this.type.target.name).func_240699_a_(TextFormatting.BOLD))).func_240699_a_(TextFormatting.DARK_RED));
+        tooltip.add((new TranslationTextComponent("ironshulkerbox.upgrade.tooltip", new TranslationTextComponent("ironshulkerbox." + this.type.source.name).mergeStyle(TextFormatting.BOLD), new TranslationTextComponent("ironshulkerbox." + this.type.target.name).mergeStyle(TextFormatting.BOLD))).mergeStyle(TextFormatting.DARK_RED));
       }
     }
     if (I18n.hasKey("ironshulkerbox.color.tooltip")) {
-      tooltip.add((new TranslationTextComponent("ironshulkerbox.color.tooltip", 0)).func_240699_a_(TextFormatting.GOLD));
+      tooltip.add((new TranslationTextComponent("ironshulkerbox.color.tooltip", 0)).mergeStyle(TextFormatting.GOLD));
     }
 
     super.addInformation(stack, worldIn, tooltip, flagIn);

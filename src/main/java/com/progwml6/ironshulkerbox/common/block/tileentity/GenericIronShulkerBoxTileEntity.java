@@ -211,7 +211,7 @@ public class GenericIronShulkerBoxTileEntity extends LockableLootTileEntity impl
   }
 
   private void updateNeighbors() {
-    this.getBlockState().func_235734_a_(this.getWorld(), this.getPos(), 3);
+    this.getBlockState().updateNeighbours(this.getWorld(), this.getPos(), 3);
   }
 
   @Override
@@ -248,8 +248,8 @@ public class GenericIronShulkerBoxTileEntity extends LockableLootTileEntity impl
   }
 
   @Override
-  public void func_230337_a_(BlockState blockState, CompoundNBT compound) {
-    super.func_230337_a_(blockState, compound);
+  public void read(BlockState blockState, CompoundNBT compound) {
+    super.read(blockState, compound);
 
     this.loadFromNbt(compound);
   }
