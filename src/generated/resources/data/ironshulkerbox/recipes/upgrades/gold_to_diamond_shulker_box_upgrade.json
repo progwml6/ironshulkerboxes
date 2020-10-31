@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GMG",
+    "GSG",
+    "GMG"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:gems/diamond"
+    },
+    "S": {
+      "tag": "forge:ingots/gold"
+    },
+    "G": {
+      "tag": "forge:glass"
+    }
+  },
+  "result": {
+    "item": "ironshulkerbox:gold_to_diamond_shulker_box_upgrade"
+  }
+}

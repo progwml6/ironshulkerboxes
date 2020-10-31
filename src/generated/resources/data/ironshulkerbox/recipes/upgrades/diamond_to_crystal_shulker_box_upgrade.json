@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GSG",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:obsidian"
+    },
+    "G": {
+      "tag": "forge:glass"
+    }
+  },
+  "result": {
+    "item": "ironshulkerbox:diamond_to_crystal_shulker_box_upgrade"
+  }
+}
