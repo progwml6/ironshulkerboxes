@@ -11,7 +11,7 @@ license="GNU General Public License v3.0"
     authors="cpw, alexbegt, progwml6"
     description='''
 New Shulker Boxes with larger sizes, with in-place upgrade items.
-The feature shulker box is the crystal chest, which is transparent - some inventory contents are visible without opening the shulker box
+The feature shulker box is the crystal chest, which is transparent - some inventory contents are visible without opening the shulker box 
     '''
     displayURL="https://minecraft.curseforge.com/projects/iron-shulker-boxes"
     [[dependencies.ironshulkerbox]]
