@@ -711,7 +711,7 @@ public class ShulkerBoxesBlocks {
   private static Supplier<BlockItem> item(final RegistryObject<? extends Block> block,
     final Supplier<Callable<ItemStackTileEntityRenderer>> renderMethod) {
     return () -> new BlockItem(block.get(),
-      new Item.Properties().group(IronShulkerBoxes.IRONSHULKERBOX_ITEM_GROUP).setISTER(renderMethod));
+      new Item.Properties().group(IronShulkerBoxes.IRONSHULKERBOX_ITEM_GROUP).setISTER(renderMethod).maxStackSize(1));
   }
 
   @OnlyIn(Dist.CLIENT)
