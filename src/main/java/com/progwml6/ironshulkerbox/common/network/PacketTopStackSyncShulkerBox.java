@@ -37,7 +37,6 @@ public class PacketTopStackSyncShulkerBox {
   }
 
   public static PacketTopStackSyncShulkerBox decode(PacketBuffer buf) {
-    int dimension = buf.readInt();
     BlockPos pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
 
     int size = buf.readInt();
