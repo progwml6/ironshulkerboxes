@@ -19,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
-import net.minecraft.tileentity.ShulkerBoxTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
@@ -31,8 +30,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -313,7 +310,6 @@ public class GenericIronShulkerBoxTileEntity extends LockableLootTileEntity impl
   }
 
   @Nullable
-  @OnlyIn(Dist.CLIENT)
   public DyeColor getColor() {
     if (this.needsColorFromWorld) {
       this.color = GenericIronShulkerBlock.getColorFromBlock(this.getBlockState().getBlock());

@@ -272,13 +272,11 @@ public class GenericIronShulkerBlock extends Block {
   }
 
   @Nullable
-  @OnlyIn(Dist.CLIENT)
   public static DyeColor getColorFromItem(Item itemIn) {
     return getColorFromBlock(Block.getBlockFromItem(itemIn));
   }
 
   @Nullable
-  @OnlyIn(Dist.CLIENT)
   public static DyeColor getColorFromBlock(Block blockIn) {
     return blockIn instanceof GenericIronShulkerBlock ? ((GenericIronShulkerBlock) blockIn).getColor() : null;
   }
