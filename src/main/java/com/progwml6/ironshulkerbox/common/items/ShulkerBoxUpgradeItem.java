@@ -92,7 +92,12 @@ public class ShulkerBoxUpgradeItem extends Item {
         GenericIronShulkerBoxTileEntity shulkerBox = (GenericIronShulkerBoxTileEntity) tileEntity;
         BlockState shulkerBoxState = world.getBlockState(blockPos);
 
-        shulkerBoxContents = shulkerBox.getItems();
+        shulkerBoxContents = NonNullList.<ItemStack>withSize(shulkerBox.getSizeInventory(), ItemStack.EMPTY);
+
+        for (int i = 0; i < shulkerBoxContents.size(); i++) {
+          shulkerBoxContents.set(i, shulkerBox.getStackInSlot(i));
+        }
+
         shulkerBoxFacing = shulkerBoxState.get(ShulkerBoxBlock.FACING);
         customName = shulkerBox.getCustomName();
         shulkerBoxColor = shulkerBox.getColor();
