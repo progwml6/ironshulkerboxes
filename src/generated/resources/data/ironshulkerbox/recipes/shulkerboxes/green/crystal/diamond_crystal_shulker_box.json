@@ -1,11 +1,7 @@
 {
-  "type": "ironshulkerbox:shulker_box_crafting",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "ironshulkerbox:green_shulker_box",
-  "pattern": [
-    "GGG",
-    "GSG",
-    "GGG"
-  ],
   "key": {
     "G": {
       "tag": "forge:glass"
@@ -14,6 +10,11 @@
       "item": "ironshulkerbox:diamond_shulker_box_green"
     }
   },
+  "pattern": [
+    "GGG",
+    "GSG",
+    "GGG"
+  ],
   "result": {
     "item": "ironshulkerbox:crystal_shulker_box_green"
   }

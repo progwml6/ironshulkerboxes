@@ -1,33 +1,82 @@
 buildscript {
     repositories {
         mavenLocal()
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://libraries.minecraft.net/' }
         mavenCentral()
+        jcenter()
+        maven {
+            name "Parchment"
+            url "https://maven.parchmentmc.org"
+        }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { // Vanilla
+        name 'Vanilla'
+        url 'https://libraries.minecraft.net/'
+    }
+    maven { // Forge
+        name 'ForgeFS'
+        url 'https://maven.minecraftforge.net/'
+    }
     maven {
         name 'DVS1 Maven FS'
-        url 'http://dvs1.progwml6.com/files/maven'
+        url 'https://dvs1.progwml6.com/files/maven'
     }
 }
 
 group = "com.progwml6.ironshulkerbox"
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+task buildInfo {
+    def cmd = "git rev-parse --short HEAD"
+    def proc = cmd.execute()
+    proc.waitFor()
+    if (proc.exitValue() == 0) {
+        ext.revision = proc.text.trim()
+    } else {
+        ext.revision = "GITBORK"
+    }
+
+    if (System.getenv().BUILD_NUMBER != null) {
+        ext.buildNum = System.getenv().BUILD_NUMBER
+    } else {
+        ext.buildNum = "DEV.${project.buildInfo.revision}"
+    }
+}
+
+version = "${minecraft_version}-${mod_version}.${project.buildInfo.buildNum}"
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/generated/resources"
+            //But exclude the cache of the generated data from what gets built
+            exclude '.cache'
+        }
+    }
+}
 
 minecraft {
-    mappings channel: 'snapshot', version: mappings_version
+    mappings channel: 'parchment', version: "${parchment_version}-${minecraft_version}"
+//    mappings channel: 'official', version: "${minecraft_version}"
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -95,6 +144,9 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
+            environment 'assetIndex', '{asset_index}'
+            environment 'assetDirectory', '{assets_root}'
+
             args '--mod', 'ironshulkerbox', '--all', '--output', file('src/generated/resources/')
 
             mods {
@@ -110,59 +162,25 @@ dependencies {
     minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
 
     // compile against the JEI API but do not include it at runtime
-    compileOnly fg.deobf("mezz.jei:jei-1.16.2:${jei_version}:api")
+//    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.2:${jei_version}")
+//    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 }
-
-task buildInfo {
-    def cmd = "git rev-parse --short HEAD"
-    def proc = cmd.execute()
-    proc.waitFor()
-    if (proc.exitValue() == 0) {
-        ext.revision = proc.text.trim()
-    } else {
-        ext.revision = "GITBORK"
-    }
-
-    if (System.getenv().BUILD_NUMBER != null) {
-        ext.buildNum = System.getenv().BUILD_NUMBER
-    } else {
-        ext.buildNum = "DEV.${project.buildInfo.revision}"
-    }
-}
-
-version = "${minecraft_version}-${mod_version}.${project.buildInfo.buildNum}"
-
-sourceSets {
-    main {
-        resources {
-            srcDirs "src/generated/resources"
-            //But exclude the cache of the generated data from what gets built
-            exclude '.cache'
-        }
-    }
-}
-
-
 
 def modsTomlSpec = copySpec{
     from(sourceSets.main.resources) {
         include 'META-INF/mods.toml'
         expand 'version': project.version,
-            'minecraft_version_min': minecraft_version_min,
-            'minecraft_version_max': minecraft_version_max,
-            'forge_version_min': forge_version_min,
-            'forge_version_max': forge_version_max,
-            'javafml_min': javafml_min,
-            'javafml_max': javafml_max
+                'loader_range': loader_range,
+                'minecraft_range': minecraft_range,
+                'forge_range': forge_range
     }
 }
 
 // need to copy into each build directory, unfortunately does not seem easy to do this automatically
 def buildPaths = [
-    "$rootDir/out/production/resources", // IDEA
-    "$rootDir/bin", // Eclipse
+        "$rootDir/out/production/resources", // IDEA
+        "$rootDir/bin", // Eclipse
 ]
 
 // task to add mods.toml to all relevant folders
@@ -190,15 +208,6 @@ processResources {
     finalizedBy replaceResources
 }
 
-task sourcesJar(type: Jar) {
-    from sourceSets.main.allJava
-    classifier = 'sources'
-}
-
-artifacts {
-    archives sourcesJar
-}
-
 jar {
     manifest {
         attributes([
@@ -214,6 +223,15 @@ jar {
 }
 
 jar.finalizedBy('reobfJar')
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
 
 publishing {
     publications {

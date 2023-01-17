@@ -1,6 +1,6 @@
 modLoader="javafml"
-loaderVersion="[${javafml_min},${javafml_max})"
-issueTrackerURL="https://github.com/progwml6/ironshulkerboxes/issues"
+loaderVersion="${loader_range}"
+issueTrackerURL="https://github.com/progwml6/ironshulkerbox/issues"
 license="GNU General Public License v3.0"
 
 [[mods]]
@@ -14,9 +14,17 @@ New Shulker Boxes with larger sizes, with in-place upgrade items.
 The feature shulker box is the crystal chest, which is transparent - some inventory contents are visible without opening the shulker box 
     '''
     displayURL="https://minecraft.curseforge.com/projects/iron-shulker-boxes"
-    [[dependencies.ironshulkerbox]]
-        modId="forge"
-        mandatory=true
-        versionRange="[${forge_version_min},${forge_version_max})"
-        ordering="NONE"
-        side="BOTH"
+
+[[dependencies.ironshulkerbox]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ironshulkerbox]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_range}"
+    ordering="NONE"
+    side="BOTH"

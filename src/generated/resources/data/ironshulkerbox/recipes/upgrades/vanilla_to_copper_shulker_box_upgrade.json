@@ -1,35 +1,20 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
-    {
-      "conditions": [
-        {
-          "value": {
-            "tag": "forge:ingots/copper",
-            "type": "forge:tag_empty"
-          },
-          "type": "forge:not"
-        }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "MMM",
-          "MSM",
-          "MMM"
-        ],
-        "key": {
-          "M": {
-            "tag": "forge:ingots/copper"
-          },
-          "S": {
-            "item": "minecraft:shulker_shell"
-          }
-        },
-        "result": {
-          "item": "ironshulkerbox:vanilla_to_copper_shulker_box_upgrade"
-        }
-      }
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "tag": "forge:ingots/copper"
+    },
+    "S": {
+      "item": "minecraft:shulker_shell"
     }
-  ]
+  },
+  "pattern": [
+    "MMM",
+    "MSM",
+    "MMM"
+  ],
+  "result": {
+    "item": "ironshulkerbox:vanilla_to_copper_shulker_box_upgrade"
+  }
 }

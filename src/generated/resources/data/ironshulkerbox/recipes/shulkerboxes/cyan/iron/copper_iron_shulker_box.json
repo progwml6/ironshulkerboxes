@@ -1,22 +1,23 @@
 {
-  "type": "ironshulkerbox:shulker_box_crafting",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "ironshulkerbox:cyan_shulker_box",
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "M": {
+      "tag": "forge:ingots/iron"
+    },
+    "S": {
+      "item": "ironshulkerbox:copper_shulker_box_cyan"
+    }
+  },
   "pattern": [
     "MGM",
     "GSG",
     "MGM"
   ],
-  "key": {
-    "G": {
-      "tag": "forge:glass"
-    },
-    "S": {
-      "item": "ironshulkerbox:copper_shulker_box_cyan"
-    },
-    "M": {
-      "tag": "forge:ingots/iron"
-    }
-  },
   "result": {
     "item": "ironshulkerbox:iron_shulker_box_cyan"
   }

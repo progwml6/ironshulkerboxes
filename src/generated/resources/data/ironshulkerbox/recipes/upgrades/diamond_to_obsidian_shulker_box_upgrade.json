@@ -1,18 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "M": {
+      "item": "minecraft:obsidian"
+    }
+  },
   "pattern": [
     "MGM",
     "MMM",
     "MMM"
   ],
-  "key": {
-    "M": {
-      "item": "minecraft:obsidian"
-    },
-    "G": {
-      "tag": "forge:glass"
-    }
-  },
   "result": {
     "item": "ironshulkerbox:diamond_to_obsidian_shulker_box_upgrade"
   }

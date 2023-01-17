@@ -1,19 +1,21 @@
 package com.progwml6.ironshulkerbox.common.block;
 
-import com.progwml6.ironshulkerbox.common.block.tileentity.IronShulkerBoxTileEntity;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.DyeColor;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockReader;
+import com.progwml6.ironshulkerbox.common.block.entity.IronShulkerBoxBlockEntity;
+import com.progwml6.ironshulkerbox.common.registraton.IronShulkerBoxesBlockEntityTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
-public class IronShulkerBoxBlock extends GenericIronShulkerBlock {
+public class IronShulkerBoxBlock extends AbstractIronShulkerBoxBlock {
 
-  public IronShulkerBoxBlock(DyeColor color, Properties properties) {
-    super(color, properties, IronShulkerBoxesTypes.IRON);
+  public IronShulkerBoxBlock(Properties properties, @Nullable DyeColor color) {
+    super(properties, color, IronShulkerBoxesBlockEntityTypes.IRON_SHULKER_BOX::get, IronShulkerBoxesTypes.IRON);
   }
-
+  
   @Override
-  public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return new IronShulkerBoxTileEntity(this.color);
+  public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    return new IronShulkerBoxBlockEntity(this.color, pPos, pState);
   }
 }

@@ -1,11 +1,7 @@
 {
-  "type": "ironshulkerbox:shulker_box_crafting",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "ironshulkerbox:blue_shulker_box",
-  "pattern": [
-    "MMM",
-    "MSM",
-    "MMM"
-  ],
   "key": {
     "M": {
       "item": "minecraft:obsidian"
@@ -14,6 +10,11 @@
       "item": "ironshulkerbox:diamond_shulker_box_blue"
     }
   },
+  "pattern": [
+    "MMM",
+    "MSM",
+    "MMM"
+  ],
   "result": {
     "item": "ironshulkerbox:obsidian_shulker_box_blue"
   }

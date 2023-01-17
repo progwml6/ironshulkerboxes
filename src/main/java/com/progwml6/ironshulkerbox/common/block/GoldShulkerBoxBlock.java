@@ -1,21 +1,21 @@
 package com.progwml6.ironshulkerbox.common.block;
 
-import com.progwml6.ironshulkerbox.common.block.GenericIronShulkerBlock;
-import com.progwml6.ironshulkerbox.common.block.IronShulkerBoxesTypes;
-import com.progwml6.ironshulkerbox.common.block.tileentity.GoldShulkerBoxTileEntity;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.DyeColor;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockReader;
+import com.progwml6.ironshulkerbox.common.block.entity.GoldShulkerBoxBlockEntity;
+import com.progwml6.ironshulkerbox.common.registraton.IronShulkerBoxesBlockEntityTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
-public class GoldShulkerBoxBlock extends GenericIronShulkerBlock {
+public class GoldShulkerBoxBlock extends AbstractIronShulkerBoxBlock {
 
-  public GoldShulkerBoxBlock(DyeColor color, Properties properties) {
-    super(color, properties, IronShulkerBoxesTypes.GOLD);
+  public GoldShulkerBoxBlock(Properties properties, @Nullable DyeColor color) {
+    super(properties, color, IronShulkerBoxesBlockEntityTypes.GOLD_SHULKER_BOX::get, IronShulkerBoxesTypes.GOLD);
   }
 
   @Override
-  public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return new GoldShulkerBoxTileEntity(this.color);
+  public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    return new GoldShulkerBoxBlockEntity(this.color, pPos, pState);
   }
 }
