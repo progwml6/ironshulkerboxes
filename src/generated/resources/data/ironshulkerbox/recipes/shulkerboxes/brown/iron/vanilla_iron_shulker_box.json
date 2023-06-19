@@ -17,5 +17,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:iron_shulker_box_brown"
-  }
+  },
+  "show_notification": true
 }

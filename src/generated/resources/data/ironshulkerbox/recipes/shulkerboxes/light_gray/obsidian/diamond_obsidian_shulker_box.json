@@ -17,5 +17,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:obsidian_shulker_box_light_gray"
-  }
+  },
+  "show_notification": true
 }

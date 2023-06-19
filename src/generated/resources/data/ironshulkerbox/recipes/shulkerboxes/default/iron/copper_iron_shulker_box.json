@@ -20,5 +20,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:iron_shulker_box"
-  }
+  },
+  "show_notification": true
 }

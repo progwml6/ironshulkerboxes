@@ -73,8 +73,8 @@ sourceSets {
 }
 
 minecraft {
-    mappings channel: 'parchment', version: "${parchment_version}-${minecraft_version}"
-//    mappings channel: 'official', version: "${minecraft_version}"
+//    mappings channel: 'parchment', version: "${parchment_version}-${minecraft_version}"
+    mappings channel: 'official', version: "${minecraft_version}"
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -171,16 +171,16 @@ def modsTomlSpec = copySpec{
     from(sourceSets.main.resources) {
         include 'META-INF/mods.toml'
         expand 'version': project.version,
-                'loader_range': loader_range,
-                'minecraft_range': minecraft_range,
-                'forge_range': forge_range
+            'loader_range': loader_range,
+            'minecraft_range': minecraft_range,
+            'forge_range': forge_range
     }
 }
 
 // need to copy into each build directory, unfortunately does not seem easy to do this automatically
 def buildPaths = [
-        "$rootDir/out/production/resources", // IDEA
-        "$rootDir/bin", // Eclipse
+    "$rootDir/out/production/resources", // IDEA
+    "$rootDir/bin", // Eclipse
 ]
 
 // task to add mods.toml to all relevant folders
@@ -211,13 +211,13 @@ processResources {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "Iron Shulker Boxes",
-                "Specification-Vendor"    : "Progwml6",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : "${version}",
-                "Implementation-Vendor"   : "Progwml6",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            "Specification-Title"     : "Iron Shulker Boxes",
+            "Specification-Vendor"    : "Progwml6",
+            "Specification-Version"   : "1", // We are version 1 of ourselves
+            "Implementation-Title"    : project.name,
+            "Implementation-Version"  : "${version}",
+            "Implementation-Vendor"   : "Progwml6",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }

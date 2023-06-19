@@ -17,5 +17,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:iron_shulker_box_magenta"
-  }
+  },
+  "show_notification": true
 }

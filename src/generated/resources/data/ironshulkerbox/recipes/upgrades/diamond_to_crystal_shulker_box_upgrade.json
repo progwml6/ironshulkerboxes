@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:diamond_to_crystal_shulker_box_upgrade"
-  }
+  },
+  "show_notification": true
 }

@@ -1,6 +1,5 @@
 package com.progwml6.ironshulkerbox.common.item;
 
-import com.progwml6.ironshulkerbox.common.Util;
 import com.progwml6.ironshulkerbox.common.block.AbstractIronShulkerBoxBlock;
 import com.progwml6.ironshulkerbox.common.block.IronShulkerBoxesTypes;
 import com.progwml6.ironshulkerbox.common.block.entity.AbstractIronShulkerBoxBlockEntity;
@@ -164,15 +163,11 @@ public class IronShulkerBoxUpgradeItem extends Item {
 
   @Override
   public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-    if (Util.canTranslate("ironshulkerbox.upgrade.tooltip")) {
-      if (Util.canTranslate("ironshulkerbox." + this.type.source.getEnglishName().toLowerCase()) && Util.canTranslate("ironshulkerbox." + this.type.target.getEnglishName().toLowerCase())) {
-        pTooltipComponents.add((Component.translatable("ironshulkerbox.upgrade.tooltip", Component.translatable("ironshulkerbox." + this.type.source.getEnglishName().toLowerCase()).withStyle(ChatFormatting.BOLD), Component.translatable("ironshulkerbox." + this.type.target.getEnglishName().toLowerCase()).withStyle(ChatFormatting.BOLD))).withStyle(ChatFormatting.DARK_RED));
-      }
-    }
-
-    if (Util.canTranslate("ironshulkerbox.color.tooltip")) {
-      pTooltipComponents.add((Component.translatable("ironshulkerbox.color.tooltip", 0)).withStyle(ChatFormatting.GOLD));
-    }
+    Component SOURCE = Component.translatable("ironshulkerbox." + this.type.source.getEnglishName().toLowerCase()).withStyle(ChatFormatting.BOLD);
+    Component TARGET = Component.translatable("ironshulkerbox." + this.type.target.getEnglishName().toLowerCase()).withStyle(ChatFormatting.BOLD);
+    
+    pTooltipComponents.add(Component.translatable("item.ironshulkerbox.shulker_box_upgrade.upgrade", SOURCE, TARGET).withStyle(ChatFormatting.DARK_RED));
+    pTooltipComponents.add(Component.translatable("item.ironshulkerbox.shulker_box_upgrade.color").withStyle(ChatFormatting.GOLD));
 
     super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
   }

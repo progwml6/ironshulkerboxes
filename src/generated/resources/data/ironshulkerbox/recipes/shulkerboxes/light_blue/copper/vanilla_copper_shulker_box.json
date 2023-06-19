@@ -17,5 +17,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:copper_shulker_box_light_blue"
-  }
+  },
+  "show_notification": true
 }

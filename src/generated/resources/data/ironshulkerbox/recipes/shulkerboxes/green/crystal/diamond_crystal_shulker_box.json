@@ -17,5 +17,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:crystal_shulker_box_green"
-  }
+  },
+  "show_notification": true
 }

@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:gold_to_diamond_shulker_box_upgrade"
-  }
+  },
+  "show_notification": true
 }

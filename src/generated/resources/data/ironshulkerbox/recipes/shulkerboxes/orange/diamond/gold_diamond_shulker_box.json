@@ -20,5 +20,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:diamond_shulker_box_orange"
-  }
+  },
+  "show_notification": true
 }

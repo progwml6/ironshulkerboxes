@@ -17,5 +17,6 @@
   ],
   "result": {
     "item": "ironshulkerbox:gold_shulker_box_white"
-  }
+  },
+  "show_notification": true
 }

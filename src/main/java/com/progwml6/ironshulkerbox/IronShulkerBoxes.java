@@ -5,6 +5,7 @@ import com.progwml6.ironshulkerbox.client.screen.IronShulkerBoxScreen;
 import com.progwml6.ironshulkerbox.common.block.AbstractIronShulkerBoxBlock;
 import com.progwml6.ironshulkerbox.common.block.IronShulkerBoxesTypes;
 import com.progwml6.ironshulkerbox.common.data.IronShulkerBoxesBlockTags;
+import com.progwml6.ironshulkerbox.common.data.IronShulkerBoxesLanguageProvider;
 import com.progwml6.ironshulkerbox.common.data.IronShulkerBoxesRecipeProvider;
 import com.progwml6.ironshulkerbox.common.data.IronShulkerBoxesSpriteSourceProvider;
 import com.progwml6.ironshulkerbox.common.data.loot.IronShulkerBoxesLootTableProvider;
@@ -168,13 +169,14 @@ public class IronShulkerBoxes {
     gen.addProvider(event.includeClient(), new IronShulkerBoxesRecipeProvider(packOutput));
     gen.addProvider(event.includeClient(), new IronShulkerBoxesSpriteSourceProvider(packOutput, ext));
     gen.addProvider(event.includeClient(), new IronShulkerBoxesBlockTags(packOutput, lookupProvider, ext));
+    gen.addProvider(event.includeClient(), new IronShulkerBoxesLanguageProvider(packOutput, "en_us"));
   }
 
   public void registerCreativeModeTabs(final CreativeModeTabEvent.Register eventIn) {
     eventIn.registerCreativeModeTab(new ResourceLocation(IronShulkerBoxes.MOD_ID, IronShulkerBoxes.MOD_ID), builder -> builder
       .title(Component.translatable("itemGroup." + IronShulkerBoxes.MOD_ID))
       .icon(() -> new ItemStack(IronShulkerBoxesBlocks.IRON_SHULKER_BOX.get()))
-      .displayItems((featureFlagSet, output, hasPermissions) -> {
+      .displayItems((featureFlagSet, output) -> {
         for (final RegistryObject<Item> item : IronShulkerBoxesItems.ITEMS.getEntries())
           output.accept(item.get());
       }));

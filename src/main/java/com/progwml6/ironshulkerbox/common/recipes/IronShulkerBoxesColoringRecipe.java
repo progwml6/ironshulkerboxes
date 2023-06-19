@@ -2,6 +2,7 @@ package com.progwml6.ironshulkerbox.common.recipes;
 
 import com.progwml6.ironshulkerbox.common.block.AbstractIronShulkerBoxBlock;
 import com.progwml6.ironshulkerbox.common.registraton.IronShulkerBoxesRecipes;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.DyeColor;
@@ -54,7 +55,7 @@ public class IronShulkerBoxesColoringRecipe extends CustomRecipe {
   /**
    * Returns an Item that is the result of this recipe
    */
-  public ItemStack assemble(CraftingContainer pInv) {
+  public ItemStack assemble(CraftingContainer pInv, RegistryAccess registryAccess) {
     ItemStack itemStack = ItemStack.EMPTY;
     DyeColor dyeColor = DyeColor.WHITE;
 
