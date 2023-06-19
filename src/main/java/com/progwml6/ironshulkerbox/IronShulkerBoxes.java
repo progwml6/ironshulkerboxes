@@ -4,6 +4,7 @@ import com.progwml6.ironshulkerbox.client.render.IronShulkerBoxRenderer;
 import com.progwml6.ironshulkerbox.client.screen.IronShulkerBoxScreen;
 import com.progwml6.ironshulkerbox.common.block.AbstractIronShulkerBoxBlock;
 import com.progwml6.ironshulkerbox.common.block.IronShulkerBoxesTypes;
+import com.progwml6.ironshulkerbox.common.creativetabs.IronShulkerBoxesCreativeTabs;
 import com.progwml6.ironshulkerbox.common.data.IronShulkerBoxesBlockTags;
 import com.progwml6.ironshulkerbox.common.data.IronShulkerBoxesLanguageProvider;
 import com.progwml6.ironshulkerbox.common.data.IronShulkerBoxesRecipeProvider;
@@ -22,30 +23,24 @@ import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.ShulkerBoxDispenseBehavior;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -110,8 +105,7 @@ public class IronShulkerBoxes {
     IronShulkerBoxesBlockEntityTypes.BLOCK_ENTITIES.register(modBus);
     IronShulkerBoxesMenuTypes.MENU_TYPES.register(modBus);
     IronShulkerBoxesRecipes.RECIPE_SERIALIZERS.register(modBus);
-
-    modBus.addListener(this::registerCreativeModeTabs);
+    IronShulkerBoxesCreativeTabs.CREATIVE_MODE_TABS.register(modBus);
   }
 
   @OnlyIn(Dist.CLIENT)
@@ -170,15 +164,5 @@ public class IronShulkerBoxes {
     gen.addProvider(event.includeClient(), new IronShulkerBoxesSpriteSourceProvider(packOutput, ext));
     gen.addProvider(event.includeClient(), new IronShulkerBoxesBlockTags(packOutput, lookupProvider, ext));
     gen.addProvider(event.includeClient(), new IronShulkerBoxesLanguageProvider(packOutput, "en_us"));
-  }
-
-  public void registerCreativeModeTabs(final CreativeModeTabEvent.Register eventIn) {
-    eventIn.registerCreativeModeTab(new ResourceLocation(IronShulkerBoxes.MOD_ID, IronShulkerBoxes.MOD_ID), builder -> builder
-      .title(Component.translatable("itemGroup." + IronShulkerBoxes.MOD_ID))
-      .icon(() -> new ItemStack(IronShulkerBoxesBlocks.IRON_SHULKER_BOX.get()))
-      .displayItems((featureFlagSet, output) -> {
-        for (final RegistryObject<Item> item : IronShulkerBoxesItems.ITEMS.getEntries())
-          output.accept(item.get());
-      }));
   }
 }

@@ -17,7 +17,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -46,8 +47,8 @@ public class IronShulkerBoxesBlocks {
     }
   };
 
-  private static final BlockBehaviour.Properties STANDARD = BlockBehaviour.Properties.of(Material.METAL).strength(3.0F).dynamicShape().noOcclusion().isSuffocating(positionPredicate).isViewBlocking(positionPredicate);
-  private static final BlockBehaviour.Properties REINFORCED = BlockBehaviour.Properties.of(Material.METAL).strength(3.0F, 10000.0F).dynamicShape().noOcclusion().isSuffocating(positionPredicate).isViewBlocking(positionPredicate);
+  private static final BlockBehaviour.Properties STANDARD = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F).dynamicShape().noOcclusion().isSuffocating(positionPredicate).isViewBlocking(positionPredicate).pushReaction(PushReaction.DESTROY);
+  private static final BlockBehaviour.Properties REINFORCED = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 10000.0F).dynamicShape().noOcclusion().isSuffocating(positionPredicate).isViewBlocking(positionPredicate).pushReaction(PushReaction.DESTROY);
 
   //Default uncolored
   public static final RegistryObject<IronShulkerBoxBlock> IRON_SHULKER_BOX = register("iron_shulker_box", () -> new IronShulkerBoxBlock(STANDARD, null), IronShulkerBoxesTypes.IRON, null);

@@ -44,7 +44,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -186,11 +186,11 @@ public abstract class AbstractIronShulkerBoxBlock extends BaseEntityBlock {
 
   @Override
   @Deprecated
-  public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+  public List<ItemStack> getDrops(BlockState pState, LootParams.Builder pBuilder) {
     BlockEntity blockentity = pBuilder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
 
     if (blockentity instanceof AbstractIronShulkerBoxBlockEntity ironShulkerBoxBlockEntity) {
-      pBuilder = pBuilder.withDynamicDrop(CONTENTS, (context, itemStackConsumer) -> {
+      pBuilder = pBuilder.withDynamicDrop(CONTENTS, (itemStackConsumer) -> {
         for (int i = 0; i < ironShulkerBoxBlockEntity.getContainerSize(); ++i) {
           itemStackConsumer.accept(ironShulkerBoxBlockEntity.getItem(i));
         }
@@ -259,17 +259,6 @@ public abstract class AbstractIronShulkerBoxBlock extends BaseEntityBlock {
         }
       }
     }
-  }
-
-  /**
-   * @deprecated call via {@link
-   * net.minecraft.world.level.block.state.BlockBehaviour.BlockStateBase#getPistonPushReaction} whenever possible.
-   * Implementing/overriding is fine.
-   */
-  @Override
-  @Deprecated
-  public PushReaction getPistonPushReaction(BlockState pState) {
-    return PushReaction.DESTROY;
   }
 
   @Override

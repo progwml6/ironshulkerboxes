@@ -28,5 +28,6 @@
     "recipes": [
       "ironshulkerbox:shulkerboxes/yellow/iron/copper_iron_shulker_box"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

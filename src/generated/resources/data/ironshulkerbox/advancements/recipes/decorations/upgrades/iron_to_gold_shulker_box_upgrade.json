@@ -28,5 +28,6 @@
     "recipes": [
       "ironshulkerbox:upgrades/iron_to_gold_shulker_box_upgrade"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

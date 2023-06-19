@@ -28,5 +28,6 @@
     "recipes": [
       "ironshulkerbox:shulkerboxes/pink/copper/vanilla_copper_shulker_box"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

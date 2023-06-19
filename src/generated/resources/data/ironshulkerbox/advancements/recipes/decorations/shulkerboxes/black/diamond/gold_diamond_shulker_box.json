@@ -28,5 +28,6 @@
     "recipes": [
       "ironshulkerbox:shulkerboxes/black/diamond/gold_diamond_shulker_box"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
