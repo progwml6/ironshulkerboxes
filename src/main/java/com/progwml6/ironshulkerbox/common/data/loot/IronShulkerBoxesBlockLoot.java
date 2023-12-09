@@ -25,7 +25,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class IronShulkerBoxesBlockLoot extends BlockLootSubProvider {
 

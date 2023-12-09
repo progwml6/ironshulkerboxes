@@ -5,22 +5,22 @@ import com.progwml6.ironshulkerbox.common.block.IronShulkerBoxesTypes;
 import com.progwml6.ironshulkerbox.common.block.entity.AbstractIronShulkerBoxBlockEntity;
 import com.progwml6.ironshulkerbox.common.registraton.IronShulkerBoxesBlocks;
 import net.minecraft.ChatFormatting;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
-import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -165,7 +165,7 @@ public class IronShulkerBoxUpgradeItem extends Item {
   public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
     Component SOURCE = Component.translatable("ironshulkerbox." + this.type.source.getEnglishName().toLowerCase()).withStyle(ChatFormatting.BOLD);
     Component TARGET = Component.translatable("ironshulkerbox." + this.type.target.getEnglishName().toLowerCase()).withStyle(ChatFormatting.BOLD);
-    
+
     pTooltipComponents.add(Component.translatable("item.ironshulkerbox.shulker_box_upgrade.upgrade", SOURCE, TARGET).withStyle(ChatFormatting.DARK_RED));
     pTooltipComponents.add(Component.translatable("item.ironshulkerbox.shulker_box_upgrade.color").withStyle(ChatFormatting.GOLD));
 

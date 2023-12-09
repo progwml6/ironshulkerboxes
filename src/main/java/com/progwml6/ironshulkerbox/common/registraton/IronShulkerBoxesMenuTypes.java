@@ -4,9 +4,9 @@ import com.progwml6.ironshulkerbox.IronShulkerBoxes;
 import com.progwml6.ironshulkerbox.common.inventory.IronShulkerBoxMenu;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class IronShulkerBoxesMenuTypes {
 

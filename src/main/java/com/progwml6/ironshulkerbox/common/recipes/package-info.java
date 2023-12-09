@@ -1,4 +1,3 @@
-
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 package com.progwml6.ironshulkerbox.common.recipes;

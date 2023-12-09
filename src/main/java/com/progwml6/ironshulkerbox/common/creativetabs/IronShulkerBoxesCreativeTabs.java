@@ -14,6 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 
 public class IronShulkerBoxesCreativeTabs {
+
   public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, IronShulkerBoxes.MOD_ID);
 
   public static final RegistryObject<CreativeModeTab> IRON_SHULKER_BOX_TAB = CREATIVE_MODE_TABS.register("ironshulkerbox", () -> CreativeModeTab.builder()

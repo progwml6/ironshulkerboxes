@@ -2,8 +2,8 @@ package com.progwml6.ironshulkerbox.common.registraton;
 
 import com.google.common.collect.ImmutableMap;
 import com.progwml6.ironshulkerbox.IronShulkerBoxes;
-import com.progwml6.ironshulkerbox.common.item.IronShulkerBoxesUpgradeType;
 import com.progwml6.ironshulkerbox.common.item.IronShulkerBoxUpgradeItem;
+import com.progwml6.ironshulkerbox.common.item.IronShulkerBoxesUpgradeType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

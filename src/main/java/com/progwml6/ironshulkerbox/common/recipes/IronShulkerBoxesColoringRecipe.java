@@ -3,24 +3,20 @@ package com.progwml6.ironshulkerbox.common.recipes;
 import com.progwml6.ironshulkerbox.common.block.AbstractIronShulkerBoxBlock;
 import com.progwml6.ironshulkerbox.common.registraton.IronShulkerBoxesRecipes;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
 
 public class IronShulkerBoxesColoringRecipe extends CustomRecipe {
 
-  public IronShulkerBoxesColoringRecipe(ResourceLocation pId, CraftingBookCategory pCategory) {
-    super(pId, pCategory);
+  public IronShulkerBoxesColoringRecipe(CraftingBookCategory pCategory) {
+    super(pCategory);
   }
 
   /**
@@ -76,7 +72,9 @@ public class IronShulkerBoxesColoringRecipe extends CustomRecipe {
 
     ItemStack newItemStack = AbstractIronShulkerBoxBlock.getColoredItemStack(dyeColor, AbstractIronShulkerBoxBlock.getTypeFromItem(itemStack.getItem()));
     if (itemStack.hasTag()) {
-      newItemStack.setTag(itemStack.getTag().copy());
+      if (itemStack.getTag() != null) {
+        newItemStack.setTag(itemStack.getTag().copy());
+      }
     }
 
     return newItemStack;

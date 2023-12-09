@@ -43,7 +43,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
@@ -309,14 +308,12 @@ public abstract class AbstractIronShulkerBoxBlock extends BaseEntityBlock {
     return itemstack;
   }
 
-  @Nullable
   public static IronShulkerBoxesTypes getTypeFromItem(Item itemIn) {
     return getTypeFromBlock(Block.byItem(itemIn));
   }
 
-  @Nullable
   public static IronShulkerBoxesTypes getTypeFromBlock(Block blockIn) {
-    return blockIn instanceof AbstractIronShulkerBoxBlock ? ((AbstractIronShulkerBoxBlock) blockIn).getType() : null;
+    return blockIn instanceof AbstractIronShulkerBoxBlock ? ((AbstractIronShulkerBoxBlock) blockIn).getType() : IronShulkerBoxesTypes.VANILLA;
   }
 
   public IronShulkerBoxesTypes getType() {
